@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>East Spruce Design Build — Architecture & Design/Build Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       SECTION 1: ANNOUNCEMENT BAR
+       ============================================================ -->
+  <div class="announcement-bar" id="announcementBar">
+    <div class="announcement-inner">
+      <span class="announcement-text">
+        Now booking Spring 2026 consultations — <a href="#contact" class="announcement-link">Reserve your spot today →</a>
+      </span>
+      <button class="announcement-dismiss" id="dismissBar" aria-label="Dismiss announcement">✕</button>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 2: NAVIGATION
+       ============================================================ -->
+  <header class="site-header" id="siteHeader">
+    <nav class="nav-container">
+      <a href="/" class="nav-logo" aria-label="East Spruce Design Build">
+        <span class="logo-mark">ESDB</span>
+        <span class="logo-wordmark">
+          <span class="logo-line1">EAST SPRUCE</span>
+          <span class="logo-line2">DESIGN BUILD</span>
+        </span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+        <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li>
+          <a href="#contact" class="nav-cta-btn">Start a Project</a>
+        </li>
+      </ul>
+
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <button class="mobile-menu-close" id="mobileClose" aria-label="Close menu">✕</button>
+      <ul class="mobile-nav-links">
+        <li><a href="#portfolio" class="mobile-nav-link">Portfolio</a></li>
+        <li><a href="#services" class="mobile-nav-link">Services</a></li>
+        <li><a href="#about" class="mobile-nav-link">About</a></li>
+        <li><a href="#contact" class="mobile-nav-cta">Start a Project</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       SECTION 3: HERO — FULL VIEWPORT
+       ============================================================ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img
+        src="https://images.unsplash.com/photo-1600607687939-ce8a6d9b6fe7?w=1800&q=80&fit=crop"
+        alt="Beautifully designed home interior by East Spruce Design Build"
+        class="hero-image"
+      />
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="hero-content">
+      <h1 class="hero-headline">
+        <span class="hero-line1">DESIGN FOR</span>
+        <span class="hero-line2" id="heroCarousel" aria-live="polite">
+          <span class="carousel-word active">REAL LIFE.</span>
+          <span class="carousel-word">YOUR FAMILY.</span>
+          <span class="carousel-word">LASTING VALUE.</span>
+          <span class="carousel-word">A BETTER FUTURE.</span>
+          <span class="carousel-word">REAL MEMORIES.</span>
+        </span>
+      </h1>
+
+      <p class="hero-subhead">
+        East Spruce is a licensed architecture and design/build studio serving homeowners and property owners across Pennsylvania and New Jersey.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Start a Project →</a>
+        <a href="#portfolio" class="btn-ghost">See Our Work →</a>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+      <span class="scroll-arrow">↓</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 4: SOCIAL PROOF BAR
+       ============================================================ -->
+  <section class="proof-bar">
+    <div class="proof-bar-inner">
+      <div class="proof-stat">
+        <span class="proof-stars">★★★★★</span>
+        <span class="proof-text">4.9 on Google &amp; Houzz</span>
+      </div>
+      <div class="proof-divider">|</div>
+      <div class="proof-stat">
+        <span class="proof-number">70+</span>
+        <span class="proof-text">Projects Completed Across PA &amp; NJ</span>
+      </div>
+      <div class="proof-divider">|</div>
+      <div class="proof-stat">
+        <span class="proof-badge">CPHC</span>
+        <span class="proof-text">Certified Passive House Consultant · Licensed in PA &amp; NJ</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 5: BRAND STATEMENT
+       ============================================================ -->
+  <section class="brand-statement">
+    <div class="brand-statement-inner">
+      <h2 class="brand-tagline">
+        Resourceful.<br />Responsible.<br />Design.
+      </h2>
+      <div class="brand-divider"></div>
+      <p class="brand-body">
+        Most projects fail where design meets construction. East Spruce closes that gap by leading both — from the first sketch to the final nail. Sustainability isn't a green label we apply at the end. It's how we think from day one.
+      </p>
+      <p class="brand-body">
+        We design it, build it, and stand behind it. One studio. Full accountability.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 6: HOW WE WORK — 4-STEP PROCESS
+       ============================================================ -->
+  <section class="process-section" id="services">
+    <div class="process-header">
+      <span class="section-eyebrow">OUR PROCESS</span>
+      <h2 class="section-title">How We Work</h2>
+      <p class="section-subtitle">We remove the mystery from design/build. Here's exactly what working with East Spruce looks like.</p>
+    </div>
+
+    <div class="process-grid">
+
+      <div class="process-card">
+        <div class="process-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80&fit=crop" alt="Consultation meeting" class="process-card-img" />
+          <div class="process-card-overlay"></div>
+          <div class="process-card-content">
+            <span class="step-number">01</span>
+            <h3 class="step-title">Book a Consultation</h3>
+            <p class="step-desc">Every project starts with a real conversation. We learn your goals, your site, and your budget — and we'll tell you honestly if we're the right fit.</p>
+            <a href="#contact" class="step-cta">Schedule Now →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-card">
+        <div class="process-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80&fit=crop" alt="Architectural design and drawings" class="process-card-img" />
+          <div class="process-card-overlay"></div>
+          <div class="process-card-content">
+            <span class="step-number">02</span>
+            <h3 class="step-title">Design Your Space</h3>
+            <p class="step-desc">Our licensed architects develop your vision into detailed drawings and a construction-ready plan — built to perform, built to last.</p>
+            <a href="#services" class="step-cta">Our Process →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-card">
+        <div class="process-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80&fit=crop" alt="Construction in progress" class="process-card-img" />
+          <div class="process-card-overlay"></div>
+          <div class="process-card-content">
+            <span class="step-number">03</span>
+            <h3 class="step-title">We Build It</h3>
+            <p class="step-desc">Our team manages every detail of construction — from permits to final inspection. You have one point of contact for everything.</p>
+            <a href="#portfolio" class="step-cta">See Our Work →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-card">
+        <div class="process-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1600566753151-384129cf4e3e?w=800&q=80&fit=crop" alt="Beautiful completed home interior" class="process-card-img" />
+          <div class="process-card-overlay"></div>
+          <div class="process-card-content">
+            <span class="step-number">04</span>
+            <h3 class="step-title">Live Better</h3>
+            <p class="step-desc">Move into a home that performs as well as it looks. High-efficiency, sustainably built, and designed to serve your family for a century.</p>
+            <a href="#contact" class="step-cta">Start a Project →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 7: VIDEO / PROJECT SHOWCASE
+       ============================================================ -->
+  <section class="showcase-section">
+    <div class="showcase-bg">
+      <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1800&q=80&fit=crop" alt="Completed East Spruce project" class="showcase-bg-img" />
+      <div class="showcase-overlay"></div>
+    </div>
+    <div class="showcase-content">
+      <span class="section-eyebrow light">OUR WORK IN ACTION</span>
+      <h2 class="showcase-headline">Every Project Starts With a Conversation.</h2>
+      <p class="showcase-sub">See the process from first sketch to final nail — and the homes that changed everything for our clients.</p>
+      <a href="#portfolio" class="btn-primary">See Project Stories →</a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 8: WHY CHOOSE ESDB — ACCORDION
+       ============================================================ -->
+  <section class="why-section">
+    <div class="why-inner">
+      <div class="why-header">
+        <span class="section-eyebrow light">WHY EAST SPRUCE</span>
+        <h2 class="section-title light">Six Reasons Our Clients Choose Us — And Stay.</h2>
+      </div>
+
+      <div class="accordion" id="whyAccordion">
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-num">01</span>
+            <span class="accordion-title">Designer-Led From Day One</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-panel">
+            <p>Unlike general contractors, we bring design thinking before a single wall goes up. Siting, light, proportion, and sustainability are decisions made at the start — not afterthoughts. Your project begins with intent.</p>
+            <a href="#contact" class="accordion-link">Learn More →</a>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-num">02</span>
+            <span class="accordion-title">One Studio. Full Accountability.</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-panel">
+            <p>You have one phone number and one team responsible for design and construction. No finger-pointing between your architect and your builder. When something needs to change, we own it — start to finish.</p>
+            <a href="#contact" class="accordion-link">Book a Call →</a>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-num">03</span>
+            <span class="accordion-title">Sustainability Is the Default</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-panel">
+            <p>We don't offer a "green option." Every project starts with high-performance building science baked in. Lower energy bills and a smaller footprint aren't extras — they're the baseline. That's what it means to build responsibly.</p>
+            <a href="#about" class="accordion-link">Our Philosophy →</a>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-num">04</span>
+            <span class="accordion-title">Licensed Architects. Certified Builders.</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-panel">
+            <p>Elliot Nolter is a licensed architect in PA and NJ, a Certified Passive House Consultant (CPHC), and a Sustainable Homes Professional. Our credentials are specific and verifiable — because you deserve to know exactly who's designing your home.</p>
+            <a href="#contact" class="accordion-link">Book a Call →</a>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-num">05</span>
+            <span class="accordion-title">We Qualify the Fit First</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-panel">
+            <p>We'll tell you honestly if we're the right team for your project. The paid consultation is designed to give you real value whether we work together or not. We'd rather earn your trust than your signature.</p>
+            <a href="#contact" class="accordion-link">Schedule a Consultation →</a>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-num">06</span>
+            <span class="accordion-title">Craft That Lasts a Century</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-panel">
+            <p>Our goal isn't to build what you want right now. It's to build what you'll still love in 100 years. That requires different decisions at every stage — material choices, structural planning, energy systems. We think long-term because you deserve long-term.</p>
+            <a href="#portfolio" class="accordion-link">See Our Work →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 9: FEATURED PROJECTS GALLERY
+       ============================================================ -->
+  <section class="portfolio-section" id="portfolio">
+    <div class="portfolio-header">
+      <span class="section-eyebrow">OUR WORK</span>
+      <h2 class="section-title">Every Project Tells a Story.</h2>
+      <p class="section-subtitle">Curated work from our studio — residential renovations, new builds, and sustainability-forward design across the Lehigh Valley.</p>
+    </div>
+
+    <div class="portfolio-grid">
+
+      <div class="portfolio-card">
+        <div class="portfolio-img-wrap">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80&fit=crop" alt="Bethlehem Net-Zero Renovation" class="portfolio-img" />
+          <div class="portfolio-hover">
+            <a href="#portfolio" class="portfolio-view-link">View Project →</a>
+          </div>
+        </div>
+        <div class="portfolio-card-info">
+          <span class="portfolio-tag">Residential Renovation · Passive House</span>
+          <h3 class="portfolio-project-name">Bethlehem Net-Zero Renovation</h3>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <div class="portfolio-img-wrap">
+          <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=900&q=80&fit=crop" alt="Easton Family Addition" class="portfolio-img" />
+          <div class="portfolio-hover">
+            <a href="#portfolio" class="portfolio-view-link">View Project →</a>
+          </div>
+        </div>
+        <div class="portfolio-card-info">
+          <span class="portfolio-tag">Residential Addition · New Construction</span>
+          <h3 class="portfolio-project-name">Easton Family Addition</h3>
+        </div>
+      </div>
+
+      <div class="portfolio-card">
+        <div class="portfolio-img-wrap">
+          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=80&fit=crop" alt="Allentown Sustainable Remodel" class="portfolio-img" />
+          <div class="portfolio-hover">
+            <a href="#portfolio" class="portfolio-view-link">View Project →</a>
+          </div>
+        </div>
+        <div class="portfolio-card-info">
+          <span class="portfolio-tag">Full Renovation · Sustainability Consulting</span>
+          <h3 class="portfolio-project-name">Allentown Sustainable Remodel</h3>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="portfolio-cta">
+      <a href="#portfolio" class="btn-outline">See All Projects →</a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 10: SHOP / RESOURCES PLACEHOLDER
+       ============================================================ -->
+  <section class="shop-section">
+    <div class="shop-header">
+      <span class="section-eyebrow light">RESOURCES &amp; TOOLS</span>
+      <h2 class="section-title light">Resources &amp; Plan Sets — Coming Soon</h2>
+      <p class="section-subtitle light">We're developing a library of plan sets, guides, and tools for homeowners and design professionals.</p>
+    </div>
+
+    <div class="shop-grid">
+      <div class="shop-card coming-soon">
+        <div class="shop-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80&fit=crop" alt="Plan Sets" class="shop-card-img" />
+          <div class="shop-coming-badge">Coming Soon</div>
+        </div>
+        <span class="shop-card-label">Plan Sets</span>
+      </div>
+
+      <div class="shop-card coming-soon">
+        <div class="shop-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80&fit=crop" alt="How-To Guides" class="shop-card-img" />
+          <div class="shop-coming-badge">Coming Soon</div>
+        </div>
+        <span class="shop-card-label">How-To Guides</span>
+      </div>
+
+      <div class="shop-card coming-soon">
+        <div class="shop-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600&q=80&fit=crop" alt="Sustainability Toolkits" class="shop-card-img" />
+          <div class="shop-coming-badge">Coming Soon</div>
+        </div>
+        <span class="shop-card-label">Sustainability Toolkits</span>
+      </div>
+
+      <div class="shop-card coming-soon">
+        <div class="shop-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80&fit=crop" alt="Homeowner Resources" class="shop-card-img" />
+          <div class="shop-coming-badge">Coming Soon</div>
+        </div>
+        <span class="shop-card-label">Homeowner Resources</span>
+      </div>
+    </div>
+
+    <div class="shop-waitlist">
+      <h3 class="waitlist-title">Get Early Access</h3>
+      <p class="waitlist-sub">Join the waitlist and be first to know when resources are available.</p>
+      <form class="waitlist-form" id="waitlistForm">
+        <input type="text" placeholder="First Name" class="waitlist-input" required />
+        <input type="email" placeholder="Email Address" class="waitlist-input" required />
+        <button type="submit" class="waitlist-btn">Join the Waitlist →</button>
+      </form>
+      <p class="waitlist-privacy">No spam. Unsubscribe anytime.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 11: LIFESTYLE CTA — CLOSING
+       ============================================================ -->
+  <section class="lifestyle-cta" id="contact">
+    <div class="lifestyle-bg">
+      <img src="https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=1800&q=80&fit=crop" alt="Beautiful renovated home — East Spruce Design Build" class="lifestyle-img" />
+      <div class="lifestyle-overlay"></div>
+    </div>
+    <div class="lifestyle-content">
+      <span class="section-eyebrow light">READY TO START?</span>
+      <h2 class="lifestyle-headline">Great design doesn't just look right.<br />It feels right.</h2>
+      <p class="lifestyle-sub">Apply now for a free feasibility call today, and find out how to incorporate high-performance and sustainable technology into your new home.</p>
+      <a href="mailto:hello@eastspruce.com" class="btn-primary large">Get In Touch →</a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 12: FOOTER
+       ============================================================ -->
+  <footer class="site-footer" id="about">
+    <div class="footer-inner">
+
+      <!-- Column 1: Brand -->
+      <div class="footer-col footer-brand">
+        <div class="footer-logo">
+          <span class="logo-mark">ESDB</span>
+          <div class="footer-logo-text">
+            <span class="logo-line1">EAST SPRUCE</span>
+            <span class="logo-line2">DESIGN BUILD</span>
+          </div>
+        </div>
+        <p class="footer-tagline">Resourceful. Responsible. Design.</p>
+        <address class="footer-address">Bethlehem, PA 18018</address>
+        <div class="footer-socials">
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Houzz">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L4 8v14h6v-6h4v6h6V8L12 2z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Column 2: Navigation -->
+      <div class="footer-col footer-nav">
+        <h4 class="footer-col-title">Navigate</h4>
+        <ul class="footer-links">
+          <li><a href="#portfolio" class="footer-link">Portfolio</a></li>
+          <li><a href="#services" class="footer-link">Services</a></li>
+          <li><a href="#about" class="footer-link">About</a></li>
+          <li><a href="#contact" class="footer-link">Contact</a></li>
+          <li><a href="#" class="footer-link footer-link-muted">Blog</a></li>
+          <li><a href="#" class="footer-link footer-link-muted">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Newsletter -->
+      <div class="footer-col footer-newsletter">
+        <h4 class="footer-col-title">Stay in the Loop</h4>
+        <p class="footer-newsletter-sub">Design ideas, sustainable building tips, and occasional project stories from our studio.</p>
+        <form class="footer-form" id="footerNewsletterForm">
+          <input type="text" placeholder="First Name" class="footer-input" />
+          <input type="email" placeholder="Email Address" class="footer-input" required />
+          <button type="submit" class="footer-submit">Subscribe →</button>
+        </form>
+        <p class="footer-privacy">No spam. Unsubscribe anytime.</p>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© <span id="currentYear"></span> East Spruce Design Build. Licensed in PA &amp; NJ.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

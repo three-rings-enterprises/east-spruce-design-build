@@ -1,52 +1,50 @@
-import http from 'node:http';
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import http from 'http';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const WEB_ROOT = path.join(__dirname, 'site');
+const SITE_DIR = path.join(__dirname, 'site');
 const PORT = 3000;
 
-const MIME_TYPES = {
-  '.html': 'text/html',
-  '.css':  'text/css',
-  '.js':   'text/javascript',
-  '.json': 'application/json',
-  '.png':  'image/png',
-  '.jpg':  'image/jpeg',
+const MIME = {
+  '.html': 'text/html; charset=utf-8',
+  '.css': 'text/css',
+  '.js': 'application/javascript',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
-  '.gif':  'image/gif',
-  '.svg':  'image/svg+xml',
-  '.webp': 'image/webp',
-  '.ico':  'image/x-icon',
+  '.svg': 'image/svg+xml',
+  '.ico': 'image/x-icon',
   '.woff': 'font/woff',
-  '.woff2':'font/woff2',
-  '.ttf':  'font/ttf',
+  '.woff2': 'font/woff2',
+  '.ttf': 'font/ttf',
 };
 
-http.createServer((req, res) => {
+const server = http.createServer((req, res) => {
   let urlPath = req.url.split('?')[0];
-  if (urlPath === '/') urlPath = '/index.html';
+  if (urlPath === '/' || urlPath === '') urlPath = '/index.html';
 
-  const filePath = path.join(WEB_ROOT, urlPath);
+  const filePath = path.join(SITE_DIR, urlPath);
 
-  // Prevent directory traversal
-  if (!filePath.startsWith(WEB_ROOT)) {
-    res.writeHead(403);
-    return res.end('Forbidden');
+  if (!filePath.startsWith(SITE_DIR)) {
+    res.writeHead(403); res.end('Forbidden'); return;
   }
+
+  const ext = path.extname(filePath).toLowerCase();
+  const contentType = MIME[ext] || 'text/plain';
 
   fs.readFile(filePath, (err, data) => {
     if (err) {
-      res.writeHead(404, { 'Content-Type': 'text/plain' });
-      return res.end(`404 Not Found: ${urlPath}`);
+      if (err.code === 'ENOENT') { res.writeHead(404); res.end('Not found'); }
+      else { res.writeHead(500); res.end('Server error'); }
+      return;
     }
-    const ext = path.extname(filePath).toLowerCase();
-    const contentType = MIME_TYPES[ext] || 'application/octet-stream';
     res.writeHead(200, { 'Content-Type': contentType });
     res.end(data);
   });
-}).listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}/`);
-  console.log(`Serving: ${WEB_ROOT}`);
+});
+
+server.listen(PORT, () => {
+  console.log(`Serving site/ at http://localhost:${PORT}`);
 });

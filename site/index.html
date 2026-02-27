@@ -1,507 +1,1512 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>East Spruce Design Build — Architecture & Design/Build Studio</title>
+  <title>East Spruce Design Build — Sustainable Architecture · Lehigh Valley, PA</title>
+  <meta name="description" content="Architecture, design/build, and sustainability consulting in Bethlehem, PA. Specializing in Passive House, residential renovation, and new construction." />
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --teal: #1BADA6;
+      --teal-dark: #148F89;
+      --teal-glow: rgba(27, 173, 166, 0.18);
+      --dark: #141414;
+      --dark-2: #1A2520;
+      --dark-3: #111614;
+      --olive: #344030;
+      --mid: #5A5A5A;
+      --light: #DCDAD5;
+      --warm-white: #F5F3EF;
+      --white: #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      background: var(--white);
+      color: var(--dark);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Subtle grain overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.022;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px;
+    }
+
+    .font-display { font-family: 'Cormorant Garant', Georgia, serif; }
+
+    /* ─── ANNOUNCEMENT BAR ─── */
+    #announce-bar {
+      background: var(--teal);
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      padding: 0.6rem 3rem 0.6rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      position: relative;
+    }
+    #announce-bar a {
+      color: white;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: opacity 0.2s;
+    }
+    #announce-bar a:hover { opacity: 0.8; }
+    #announce-close {
+      position: absolute;
+      right: 1rem; top: 50%;
+      transform: translateY(-50%);
+      background: none; border: none;
+      color: rgba(255,255,255,0.65);
+      font-size: 1.25rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0.2rem 0.4rem;
+      transition: color 0.2s;
+    }
+    #announce-close:hover { color: white; }
+
+    /* ─── HEADER ─── */
+    #site-header {
+      position: sticky;
+      top: 0; z-index: 100;
+      padding: 1.1rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,0.97);
+      box-shadow: 0 1px 0 var(--light), 0 2px 16px rgba(0,0,0,0.04);
+      backdrop-filter: blur(10px);
+      transition: padding 0.3s ease, box-shadow 0.3s ease;
+    }
+    #site-header.compact {
+      padding: 0.8rem 3rem;
+      box-shadow: 0 1px 0 var(--light), 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .nav-link {
+      font-size: 0.775rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--dark);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 2px;
+      transition: color 0.2s;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 100%;
+      height: 1px;
+      background: var(--teal);
+      transition: right 0.3s ease;
+    }
+    .nav-link:hover { color: var(--teal); }
+    .nav-link:hover::after { right: 0; }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: var(--teal);
+      color: white;
+      font-size: 0.775rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.65rem 1.25rem;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      background: var(--teal-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(27, 173, 166, 0.3), 0 2px 6px rgba(27, 173, 166, 0.15);
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      border: 1.5px solid var(--dark);
+      color: var(--dark);
+      font-size: 0.775rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.65rem 1.25rem;
+      background: transparent;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .btn-outline:hover { background: var(--dark); color: white; }
+
+    .btn-outline-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      border: 1.5px solid rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.8);
+      font-size: 0.775rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.65rem 1.25rem;
+      background: transparent;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .btn-outline-ghost:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.65);
+      color: white;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 660px;
+      overflow: hidden;
+      background: var(--dark-2);
+    }
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.6;
+      transform: scale(1.06);
+      transition: transform 16s ease, opacity 1.2s ease;
+    }
+    .hero-img.loaded { transform: scale(1); opacity: 0.62; }
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(0,0,0,0.55) 0%,
+        rgba(0,0,0,0.1) 40%,
+        rgba(0,0,0,0.65) 100%
+      );
+    }
+    /* subtle teal accent in bottom-right corner */
+    .hero-gradient::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 50%; height: 60%;
+      background: radial-gradient(ellipse at bottom right, rgba(27,173,166,0.08) 0%, transparent 60%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 8vw 9vh;
+      max-width: 1300px;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      opacity: 0;
+      animation: fadeUpIn 0.6s ease 0.25s forwards;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px; height: 1.5px;
+      background: var(--teal);
+      flex-shrink: 0;
+    }
+    .hero-headline {
+      font-family: 'Cormorant Garant', serif;
+      font-size: clamp(3.75rem, 8.5vw, 8rem);
+      font-weight: 400;
+      line-height: 0.97;
+      color: white;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.75rem;
+    }
+    .hero-line1 {
+      display: block;
+      opacity: 0;
+      animation: fadeUpIn 0.7s ease 0.45s forwards;
+    }
+    .hero-line2 {
+      display: flex;
+      align-items: baseline;
+      gap: 0.18em;
+      opacity: 0;
+      animation: fadeUpIn 0.7s ease 0.65s forwards;
+    }
+    /* Word cycling container */
+    #word-stage {
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      vertical-align: baseline;
+    }
+    #word-current {
+      display: inline-block;
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(255,255,255,0.88);
+      transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.5s ease;
+      white-space: nowrap;
+    }
+    #word-next {
+      position: absolute;
+      top: 0; left: 0;
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(255,255,255,0.88);
+      white-space: nowrap;
+      transform: translateY(110%);
+      opacity: 0;
+      transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.5s ease;
+    }
+    .hero-sub {
+      font-size: clamp(0.9375rem, 1.4vw, 1.0625rem);
+      color: rgba(255,255,255,0.68);
+      line-height: 1.75;
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUpIn 0.7s ease 0.85s forwards;
+    }
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+      opacity: 0;
+      animation: fadeUpIn 0.7s ease 1.05s forwards;
+    }
+    .hero-text-link {
+      font-size: 0.775rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: color 0.2s;
+    }
+    .hero-text-link:hover { color: white; }
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem; right: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      z-index: 2;
+      opacity: 0;
+      animation: fadeUpIn 0.6s ease 1.4s forwards;
+    }
+    .scroll-track {
+      width: 44px; height: 1px;
+      background: rgba(255,255,255,0.18);
+      overflow: hidden; position: relative;
+    }
+    .scroll-fill {
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: var(--teal);
+      animation: scrollPulse 2.8s ease-in-out 1.5s infinite;
+    }
+
+    /* ─── SOCIAL PROOF BAR ─── */
+    .proof-bar {
+      background: var(--dark);
+      padding: 1.125rem 3rem;
+    }
+    .proof-bar-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem 0;
+    }
+    .proof-item {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.62);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .proof-divider {
+      width: 1px; height: 16px;
+      background: rgba(255,255,255,0.14);
+    }
+    .proof-stars { color: var(--teal); font-size: 0.75rem; letter-spacing: 0.05em; }
+    .proof-accent { color: var(--teal); font-weight: 600; }
+
+    /* ─── SECTION LABEL ─── */
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1.125rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 18px; height: 1.5px;
+      background: var(--teal);
+      flex-shrink: 0;
+    }
+
+    /* ─── BRAND STATEMENT ─── */
+    .brand-statement {
+      background: var(--dark-2);
+      position: relative;
+      overflow: hidden;
+      padding: 6rem 8vw 5.5rem;
+      text-align: center;
+    }
+    .brand-statement::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 480px; height: 480px;
+      background: radial-gradient(circle, rgba(27,173,166,0.09) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .brand-statement::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 360px; height: 360px;
+      background: radial-gradient(circle, rgba(27,173,166,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .brand-tagline {
+      font-family: 'Cormorant Garant', serif;
+      font-size: clamp(2.75rem, 6vw, 5.5rem);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      color: white;
+      margin-bottom: 2.25rem;
+    }
+
+    /* ─── HOW WE WORK ─── */
+    .steps-section {
+      background: var(--dark-3);
+      padding: 6rem 0 0;
+    }
+    .steps-header {
+      padding: 0 8vw;
+      margin-bottom: 3.5rem;
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    @media (max-width: 1024px) {
+      .steps-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .steps-grid { grid-template-columns: 1fr; }
+      #site-header { padding: 1rem 1.5rem; }
+      .hero-content { padding: 0 6vw 8vh; }
+    }
+    .step-card {
+      position: relative;
+      height: 520px;
+      overflow: hidden;
+      background: #0e1512;
+      cursor: pointer;
+    }
+    .step-card + .step-card { border-left: 1px solid rgba(255,255,255,0.06); }
+    .step-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.5;
+      transform: scale(1.05);
+      transition: opacity 0.55s ease, transform 0.7s cubic-bezier(0.33,0,0,1);
+    }
+    .step-card:hover .step-img { opacity: 0.35; transform: scale(1.12); }
+    .step-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem;
+    }
+    .step-bg-num {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 7rem;
+      font-weight: 300;
+      line-height: 1;
+      color: rgba(255,255,255,0.06);
+      position: absolute;
+      top: 1rem; left: 1.75rem;
+      letter-spacing: -0.04em;
+      user-select: none;
+      transition: color 0.4s;
+    }
+    .step-card:hover .step-bg-num { color: rgba(27,173,166,0.14); }
+    .step-step {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.4rem;
+    }
+    .step-title {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.75rem;
+      font-weight: 500;
+      color: white;
+      line-height: 1.15;
+      margin-bottom: 1.125rem;
+    }
+    .step-link {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      opacity: 0.65;
+      transform: translateY(0);
+      transition: opacity 0.3s ease, color 0.2s ease;
+    }
+    .step-card:hover .step-link { opacity: 1; color: white; }
+
+    /* ─── SHOWCASE / PULL QUOTE ─── */
+    .showcase {
+      position: relative;
+      height: 580px;
+      overflow: hidden;
+    }
+    .showcase-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .showcase-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        100deg,
+        rgba(0,0,0,0.82) 0%,
+        rgba(0,0,0,0.45) 55%,
+        rgba(0,0,0,0.15) 100%
+      );
+    }
+    .showcase-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 8vw;
+      max-width: 820px;
+    }
+
+    /* ─── WHY CHOOSE ─── */
+    .why-section {
+      background: var(--dark-3);
+      padding: 6rem 8vw;
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .why-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+    .accordion-item { border-top: 1px solid rgba(255,255,255,0.09); }
+    .accordion-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.09); }
+    .accordion-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      color: rgba(255,255,255,0.78);
+      transition: color 0.2s;
+    }
+    .accordion-btn:hover { color: white; }
+    .accordion-title {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+    .acc-icon {
+      width: 18px; height: 18px;
+      flex-shrink: 0; margin-left: 1rem;
+      position: relative;
+      color: rgba(255,255,255,0.35);
+    }
+    .acc-icon::before, .acc-icon::after {
+      content: '';
+      position: absolute;
+      background: currentColor;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .acc-icon::before { width: 10px; height: 1.5px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .acc-icon::after  { width: 1.5px; height: 10px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .accordion-item.open .acc-icon::after { transform: translate(-50%,-50%) rotate(90deg); opacity: 0; }
+    .accordion-body {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .accordion-item.open .accordion-body { max-height: 180px; }
+    .accordion-body-inner {
+      padding-bottom: 1.25rem;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.85;
+    }
+
+    /* ─── PORTFOLIO ─── */
+    .portfolio-section {
+      background: var(--warm-white);
+      padding: 6rem 8vw;
+    }
+    .portfolio-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 2.5rem;
+    }
+    .portfolio-main-grid {
+      display: grid;
+      grid-template-columns: 7fr 5fr;
+      gap: 0.875rem;
+    }
+    @media (max-width: 900px) {
+      .portfolio-main-grid { grid-template-columns: 1fr; }
+    }
+    .portfolio-right-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+    }
+    .pcard {
+      position: relative;
+      overflow: hidden;
+      background: var(--dark);
+      cursor: pointer;
+    }
+    .pcard img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transform: scale(1.04);
+      transition: transform 0.65s cubic-bezier(0.33,0,0,1), opacity 0.4s ease;
+    }
+    .pcard:hover img { transform: scale(1.1); opacity: 0.75; }
+    .pcard-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+      opacity: 0.85;
+      transition: opacity 0.3s;
+    }
+    .pcard:hover .pcard-overlay { opacity: 1; }
+    .pcard-info {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1.5rem;
+      transform: translateY(4px);
+      transition: transform 0.3s ease;
+    }
+    .pcard:hover .pcard-info { transform: translateY(0); }
+    .pcard-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.25rem;
+    }
+    .pcard-title {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.375rem;
+      font-weight: 500;
+      color: white;
+      line-height: 1.2;
+      margin-bottom: 0.45rem;
+    }
+    .pcard-cta {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      opacity: 0.6;
+      transform: translateY(0);
+      transition: opacity 0.3s ease, color 0.2s ease;
+    }
+    .pcard:hover .pcard-cta { opacity: 1; color: rgba(255,255,255,0.85); }
+
+    /* ─── SHOP PLACEHOLDER ─── */
+    .shop-section {
+      background: var(--olive);
+      padding: 6rem 8vw;
+    }
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(0,0,0,0.25);
+      margin-bottom: 3rem;
+    }
+    @media (max-width: 900px) {
+      .shop-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .shop-card {
+      background: rgba(0,0,0,0.18);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: background 0.3s;
+    }
+    .shop-card:hover { background: rgba(0,0,0,0.28); }
+    .coming-badge {
+      background: rgba(27,173,166,0.18);
+      border: 1px solid rgba(27,173,166,0.35);
+      color: var(--teal);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.7rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+    .email-capture-row {
+      display: flex;
+      gap: 0.625rem;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+    .email-capture-row input {
+      flex: 1;
+      background: rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: white;
+      font-size: 0.875rem;
+      padding: 0.75rem 1rem;
+      outline: none;
+      font-family: 'DM Sans', sans-serif;
+      transition: border-color 0.2s;
+    }
+    .email-capture-row input::placeholder { color: rgba(255,255,255,0.3); }
+    .email-capture-row input:focus { border-color: var(--teal); }
+
+    /* ─── CLOSING CTA ─── */
+    .closing-section {
+      position: relative;
+      height: 640px;
+      overflow: hidden;
+    }
+    .closing-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .closing-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(0,0,0,0.82) 0%,
+        rgba(0,0,0,0.48) 50%,
+        rgba(0,0,0,0.2) 100%
+      );
+    }
+    .closing-content {
+      position: absolute; inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 8vw;
+      max-width: 800px;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark);
+      padding: 5rem 8vw 3rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 2fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+    }
+    @media (max-width: 900px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+    .footer-link {
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+    .footer-link:hover { color: var(--teal); }
+    .footer-nav-link {
+      display: block;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 0.875rem;
+      margin-bottom: 0.625rem;
+      transition: color 0.2s;
+    }
+    .footer-nav-link:hover { color: white; }
+    .footer-input {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: white;
+      font-size: 0.875rem;
+      padding: 0.7rem 1rem;
+      width: 100%;
+      margin-bottom: 0.5rem;
+      outline: none;
+      font-family: 'DM Sans', sans-serif;
+      transition: border-color 0.2s;
+    }
+    .footer-input::placeholder { color: rgba(255,255,255,0.25); }
+    .footer-input:focus { border-color: var(--teal); }
+
+    /* ─── MOBILE MENU ─── */
+    .mobile-menu {
+      position: fixed; inset: 0;
+      background: white;
+      z-index: 500;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem 2rem 2.5rem;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.77,0,0.175,1);
+    }
+    .mobile-menu.open { transform: translateX(0); }
+    .mob-nav-link {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 2.75rem;
+      font-weight: 400;
+      letter-spacing: -0.025em;
+      color: var(--dark);
+      text-decoration: none;
+      display: block;
+      padding: 0.625rem 0;
+      border-bottom: 1px solid var(--light);
+      transition: color 0.2s;
+    }
+    .mob-nav-link:hover { color: var(--teal); }
+
+    /* ─── REVEAL ANIMATIONS ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.18s; }
+    .d3 { transition-delay: 0.28s; }
+    .d4 { transition-delay: 0.38s; }
+    .d5 { transition-delay: 0.48s; }
+
+    /* ─── KEYFRAMES ─── */
+    @keyframes fadeUpIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scrollPulse {
+      0%   { left: -100%; }
+      50%  { left: 0%; }
+      100% { left: 100%; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- ============================================================
-       SECTION 1: ANNOUNCEMENT BAR
-       ============================================================ -->
-  <div class="announcement-bar" id="announcementBar">
-    <div class="announcement-inner">
-      <span class="announcement-text">
-        Now booking Spring 2026 consultations — <a href="#contact" class="announcement-link">Reserve your spot today →</a>
-      </span>
-      <button class="announcement-dismiss" id="dismissBar" aria-label="Dismiss announcement">✕</button>
+  <!-- ═══════════════════════════════════════════════
+       1. ANNOUNCEMENT BAR
+  ═══════════════════════════════════════════════ -->
+  <div id="announce-bar">
+    Now booking Spring 2026 consultations —
+    <a href="/ask-the-expert">reserve your spot today →</a>
+    <button id="announce-close" onclick="this.parentElement.remove()" aria-label="Dismiss">×</button>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       2. NAVIGATION
+  ═══════════════════════════════════════════════ -->
+  <header id="site-header">
+    <a href="/" style="display:flex;align-items:center;flex-shrink:0;">
+      <img src="/logo-black.png" alt="East Spruce Design Build" id="nav-logo"
+           style="height:2rem;width:auto;display:block;" />
+    </a>
+    <nav style="display:flex;align-items:center;gap:2rem;" class="hidden md:flex">
+      <a href="/portfolio" class="nav-link">Portfolio</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/about" class="nav-link">About</a>
+      <a href="/contact" class="btn-primary" style="margin-left:0.5rem;">Start a Project →</a>
+    </nav>
+    <button id="menu-btn" class="flex flex-col md:hidden"
+            style="background:none;border:none;cursor:pointer;padding:0.5rem;gap:5px;align-items:flex-end;"
+            aria-label="Menu">
+      <span style="display:block;width:24px;height:1.5px;background:var(--dark);transition:all 0.3s;" id="mb1"></span>
+      <span style="display:block;width:16px;height:1.5px;background:var(--dark);transition:all 0.3s;" id="mb2"></span>
+      <span style="display:block;width:24px;height:1.5px;background:var(--dark);transition:all 0.3s;" id="mb3"></span>
+    </button>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3rem;">
+      <img src="/logo-black.png" alt="East Spruce Design Build" style="height:1.75rem;" />
+      <button onclick="closeMobileMenu()"
+              style="background:none;border:none;cursor:pointer;font-size:1.5rem;color:var(--dark);line-height:1;">×</button>
+    </div>
+    <nav style="flex:1;">
+      <a href="/portfolio" class="mob-nav-link" onclick="closeMobileMenu()">Portfolio</a>
+      <a href="/services" class="mob-nav-link" onclick="closeMobileMenu()">Services</a>
+      <a href="/about" class="mob-nav-link" onclick="closeMobileMenu()">About</a>
+      <a href="/contact" class="mob-nav-link" onclick="closeMobileMenu()">Contact</a>
+    </nav>
+    <a href="/contact" class="btn-primary"
+       style="justify-content:center;padding:1rem;font-size:0.875rem;margin-top:2rem;">
+      Start a Project →
+    </a>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       3. HERO — FULL VIEWPORT
+  ═══════════════════════════════════════════════ -->
+  <section class="hero">
+    <img src="https://placehold.co/1920x1080/1C2826/253530?text=+"
+         alt="East Spruce Design Build project"
+         class="hero-img" id="hero-img"
+         onload="this.classList.add('loaded')" />
+    <div class="hero-gradient"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Bethlehem, PA &nbsp;·&nbsp; Serving PA &amp; NJ &nbsp;·&nbsp; Est. 2018</p>
+      <h1 class="hero-headline">
+        <span class="hero-line1">Design For</span>
+        <span class="hero-line2">
+          <span id="word-stage">
+            <span id="word-current">Real Life.</span>
+            <span id="word-next"></span>
+          </span>
+        </span>
+      </h1>
+      <p class="hero-sub">
+        East Spruce is a licensed architecture and design/build studio serving homeowners and property owners across Pennsylvania and New Jersey.
+      </p>
+      <div class="hero-ctas">
+        <a href="/contact" class="btn-primary" style="padding:0.875rem 1.875rem;font-size:0.875rem;">
+          Start a Project →
+        </a>
+        <a href="/portfolio" class="hero-text-link">See Our Work →</a>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <div class="scroll-track"><div class="scroll-fill"></div></div>
+      Scroll
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       4. SOCIAL PROOF BAR
+  ═══════════════════════════════════════════════ -->
+  <div class="proof-bar">
+    <div class="proof-bar-inner">
+      <div class="proof-item">
+        <span class="proof-stars">★★★★★</span>
+        <span>Highly Rated on Google &amp; Houzz</span>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-item">
+        <span class="proof-accent">70+</span>
+        <span>Projects Completed across PA &amp; NJ</span>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-item">
+        <span class="proof-accent">CPHC</span>
+        <span>Certified Passive House Consultant · Licensed in PA &amp; NJ</span>
+      </div>
     </div>
   </div>
 
-  <!-- ============================================================
-       SECTION 2: NAVIGATION
-       ============================================================ -->
-  <header class="site-header" id="siteHeader">
-    <nav class="nav-container">
-      <a href="/" class="nav-logo" aria-label="East Spruce Design Build">
-        <span class="logo-mark">ESDB</span>
-        <span class="logo-wordmark">
-          <span class="logo-line1">EAST SPRUCE</span>
-          <span class="logo-line2">DESIGN BUILD</span>
-        </span>
-      </a>
-
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
-        <li><a href="#services" class="nav-link">Services</a></li>
-        <li><a href="#about" class="nav-link">About</a></li>
-        <li>
-          <a href="#contact" class="nav-cta-btn">Start a Project</a>
-        </li>
-      </ul>
-
-      <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </nav>
-
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-      <button class="mobile-menu-close" id="mobileClose" aria-label="Close menu">✕</button>
-      <ul class="mobile-nav-links">
-        <li><a href="#portfolio" class="mobile-nav-link">Portfolio</a></li>
-        <li><a href="#services" class="mobile-nav-link">Services</a></li>
-        <li><a href="#about" class="mobile-nav-link">About</a></li>
-        <li><a href="#contact" class="mobile-nav-cta">Start a Project</a></li>
-      </ul>
-    </div>
-  </header>
-
-  <!-- ============================================================
-       SECTION 3: HERO — FULL VIEWPORT
-       ============================================================ -->
-  <section class="hero" id="hero">
-    <div class="hero-bg">
-      <img
-        src="https://images.unsplash.com/photo-1600607687939-ce8a6d9b6fe7?w=1800&q=80&fit=crop"
-        alt="Beautifully designed home interior by East Spruce Design Build"
-        class="hero-image"
-      />
-      <div class="hero-overlay"></div>
-    </div>
-
-    <div class="hero-content">
-      <h1 class="hero-headline">
-        <span class="hero-line1">DESIGN FOR</span>
-        <span class="hero-line2" id="heroCarousel" aria-live="polite">
-          <span class="carousel-word active">REAL LIFE.</span>
-          <span class="carousel-word">YOUR FAMILY.</span>
-          <span class="carousel-word">LASTING VALUE.</span>
-          <span class="carousel-word">A BETTER FUTURE.</span>
-          <span class="carousel-word">REAL MEMORIES.</span>
-        </span>
-      </h1>
-
-      <p class="hero-subhead">
-        East Spruce is a licensed architecture and design/build studio serving homeowners and property owners across Pennsylvania and New Jersey.
-      </p>
-
-      <div class="hero-actions">
-        <a href="#contact" class="btn-primary">Start a Project →</a>
-        <a href="#portfolio" class="btn-ghost">See Our Work →</a>
-      </div>
-    </div>
-
-    <div class="hero-scroll-hint">
-      <span class="scroll-arrow">↓</span>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       SECTION 4: SOCIAL PROOF BAR
-       ============================================================ -->
-  <section class="proof-bar">
-    <div class="proof-bar-inner">
-      <div class="proof-stat">
-        <span class="proof-stars">★★★★★</span>
-        <span class="proof-text">4.9 on Google &amp; Houzz</span>
-      </div>
-      <div class="proof-divider">|</div>
-      <div class="proof-stat">
-        <span class="proof-number">70+</span>
-        <span class="proof-text">Projects Completed Across PA &amp; NJ</span>
-      </div>
-      <div class="proof-divider">|</div>
-      <div class="proof-stat">
-        <span class="proof-badge">CPHC</span>
-        <span class="proof-text">Certified Passive House Consultant · Licensed in PA &amp; NJ</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       SECTION 5: BRAND STATEMENT
-       ============================================================ -->
+  <!-- ═══════════════════════════════════════════════
+       5. BRAND STATEMENT
+  ═══════════════════════════════════════════════ -->
   <section class="brand-statement">
-    <div class="brand-statement-inner">
-      <h2 class="brand-tagline">
-        Resourceful.<br />Responsible.<br />Design.
+    <div style="max-width:800px;margin:0 auto;position:relative;z-index:1;">
+      <div class="reveal">
+        <p class="section-label" style="justify-content:center;color:rgba(27,173,166,0.75);">Our Philosophy</p>
+        <h2 class="brand-tagline">
+          Resourceful.<br />Responsible.<br /><em style="color:var(--teal);font-weight:300;">Design.</em>
+        </h2>
+      </div>
+      <div class="reveal d2" style="max-width:640px;margin:0 auto;">
+        <p style="font-size:1.0625rem;color:rgba(255,255,255,0.6);line-height:1.88;margin-bottom:1.125rem;">
+          Most projects fail where design meets construction. East Spruce closes that gap by leading both — from the first sketch to the final nail.
+        </p>
+        <p style="font-size:1.0625rem;color:rgba(255,255,255,0.6);line-height:1.88;">
+          Sustainability isn't a green label we apply at the end. It's how we think from day one. You get one phone number, one team, and full accountability for every decision made.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       6. HOW WE WORK — 4 STEPS
+  ═══════════════════════════════════════════════ -->
+  <section class="steps-section">
+    <div class="steps-header reveal">
+      <p class="section-label" style="color:rgba(27,173,166,0.75);">How It Works</p>
+      <h2 class="font-display" style="font-size:clamp(2rem,4vw,3.25rem);font-weight:400;letter-spacing:-0.02em;color:white;line-height:1.08;">
+        The Path From<br /><em style="font-weight:300;color:rgba(255,255,255,0.7);">Idea to Home.</em>
       </h2>
-      <div class="brand-divider"></div>
-      <p class="brand-body">
-        Most projects fail where design meets construction. East Spruce closes that gap by leading both — from the first sketch to the final nail. Sustainability isn't a green label we apply at the end. It's how we think from day one.
-      </p>
-      <p class="brand-body">
-        We design it, build it, and stand behind it. One studio. Full accountability.
-      </p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card reveal d1">
+        <img class="step-img" src="https://placehold.co/600x700/142018/1E2C22?text=+"
+             alt="Book a consultation" />
+        <div class="step-inner">
+          <span class="step-bg-num">01</span>
+          <p class="step-step">Step One</p>
+          <h3 class="step-title">Book a<br />Consultation</h3>
+          <a href="/ask-the-expert" class="step-link">Schedule Now →</a>
+        </div>
+      </div>
+      <div class="step-card reveal d2">
+        <img class="step-img" src="https://placehold.co/600x700/161C14/202820?text=+"
+             alt="Design your space" />
+        <div class="step-inner">
+          <span class="step-bg-num">02</span>
+          <p class="step-step">Step Two</p>
+          <h3 class="step-title">Design Your<br />Space</h3>
+          <a href="/portfolio" class="step-link">See Our Work →</a>
+        </div>
+      </div>
+      <div class="step-card reveal d3">
+        <img class="step-img" src="https://placehold.co/600x700/121A16/1C2820?text=+"
+             alt="We build it" />
+        <div class="step-inner">
+          <span class="step-bg-num">03</span>
+          <p class="step-step">Step Three</p>
+          <h3 class="step-title">We<br />Build It</h3>
+          <a href="/services" class="step-link">Our Process →</a>
+        </div>
+      </div>
+      <div class="step-card reveal d4">
+        <img class="step-img" src="https://placehold.co/600x700/18201A/222C24?text=+"
+             alt="Live better" />
+        <div class="step-inner">
+          <span class="step-bg-num">04</span>
+          <p class="step-step">Step Four</p>
+          <h3 class="step-title">Live<br />Better</h3>
+          <a href="/contact" class="step-link">Start a Project →</a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       SECTION 6: HOW WE WORK — 4-STEP PROCESS
-       ============================================================ -->
-  <section class="process-section" id="services">
-    <div class="process-header">
-      <span class="section-eyebrow">OUR PROCESS</span>
-      <h2 class="section-title">How We Work</h2>
-      <p class="section-subtitle">We remove the mystery from design/build. Here's exactly what working with East Spruce looks like.</p>
-    </div>
-
-    <div class="process-grid">
-
-      <div class="process-card">
-        <div class="process-card-img-wrap">
-          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80&fit=crop" alt="Consultation meeting" class="process-card-img" />
-          <div class="process-card-overlay"></div>
-          <div class="process-card-content">
-            <span class="step-number">01</span>
-            <h3 class="step-title">Book a Consultation</h3>
-            <p class="step-desc">Every project starts with a real conversation. We learn your goals, your site, and your budget — and we'll tell you honestly if we're the right fit.</p>
-            <a href="#contact" class="step-cta">Schedule Now →</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="process-card">
-        <div class="process-card-img-wrap">
-          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80&fit=crop" alt="Architectural design and drawings" class="process-card-img" />
-          <div class="process-card-overlay"></div>
-          <div class="process-card-content">
-            <span class="step-number">02</span>
-            <h3 class="step-title">Design Your Space</h3>
-            <p class="step-desc">Our licensed architects develop your vision into detailed drawings and a construction-ready plan — built to perform, built to last.</p>
-            <a href="#services" class="step-cta">Our Process →</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="process-card">
-        <div class="process-card-img-wrap">
-          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80&fit=crop" alt="Construction in progress" class="process-card-img" />
-          <div class="process-card-overlay"></div>
-          <div class="process-card-content">
-            <span class="step-number">03</span>
-            <h3 class="step-title">We Build It</h3>
-            <p class="step-desc">Our team manages every detail of construction — from permits to final inspection. You have one point of contact for everything.</p>
-            <a href="#portfolio" class="step-cta">See Our Work →</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="process-card">
-        <div class="process-card-img-wrap">
-          <img src="https://images.unsplash.com/photo-1600566753151-384129cf4e3e?w=800&q=80&fit=crop" alt="Beautiful completed home interior" class="process-card-img" />
-          <div class="process-card-overlay"></div>
-          <div class="process-card-content">
-            <span class="step-number">04</span>
-            <h3 class="step-title">Live Better</h3>
-            <p class="step-desc">Move into a home that performs as well as it looks. High-efficiency, sustainably built, and designed to serve your family for a century.</p>
-            <a href="#contact" class="step-cta">Start a Project →</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============================================================
-       SECTION 7: VIDEO / PROJECT SHOWCASE
-       ============================================================ -->
-  <section class="showcase-section">
-    <div class="showcase-bg">
-      <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1800&q=80&fit=crop" alt="Completed East Spruce project" class="showcase-bg-img" />
-      <div class="showcase-overlay"></div>
-    </div>
+  <!-- ═══════════════════════════════════════════════
+       7. PROJECT SHOWCASE — PULL QUOTE
+  ═══════════════════════════════════════════════ -->
+  <section class="showcase">
+    <img class="showcase-bg" src="https://placehold.co/1920x700/1a201a/22281E?text=+"
+         alt="East Spruce completed project" />
+    <div class="showcase-overlay"></div>
     <div class="showcase-content">
-      <span class="section-eyebrow light">OUR WORK IN ACTION</span>
-      <h2 class="showcase-headline">Every Project Starts With a Conversation.</h2>
-      <p class="showcase-sub">See the process from first sketch to final nail — and the homes that changed everything for our clients.</p>
-      <a href="#portfolio" class="btn-primary">See Project Stories →</a>
+      <div class="reveal">
+        <p class="section-label" style="color:rgba(27,173,166,0.75);">What a Difference a Design Makes</p>
+        <blockquote class="font-display"
+                    style="font-size:clamp(1.75rem,3.5vw,3rem);font-weight:400;font-style:italic;color:white;line-height:1.3;letter-spacing:-0.015em;margin-bottom:1.75rem;">
+          "Elliot didn't just design our home — he understood what we were trying to build in every sense of the word."
+        </blockquote>
+        <div>
+          <p style="font-size:0.9375rem;font-weight:500;color:white;">— Homeowner, Bethlehem PA</p>
+          <p style="font-size:0.8125rem;color:rgba(255,255,255,0.45);margin-top:0.25rem;">
+            Residential Addition &nbsp;·&nbsp; Passive House &nbsp;·&nbsp; 2024
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       SECTION 8: WHY CHOOSE ESDB — ACCORDION
-       ============================================================ -->
+  <!-- ═══════════════════════════════════════════════
+       8. WHY CHOOSE ESDB
+  ═══════════════════════════════════════════════ -->
   <section class="why-section">
-    <div class="why-inner">
-      <div class="why-header">
-        <span class="section-eyebrow light">WHY EAST SPRUCE</span>
-        <h2 class="section-title light">Six Reasons Our Clients Choose Us — And Stay.</h2>
+    <div class="why-grid">
+      <!-- Left column -->
+      <div class="reveal">
+        <p class="section-label" style="color:rgba(27,173,166,0.75);">Why East Spruce</p>
+        <h2 class="font-display"
+            style="font-size:clamp(2rem,3.5vw,3rem);font-weight:400;letter-spacing:-0.02em;color:white;line-height:1.12;margin-bottom:1.5rem;">
+          Six Reasons<br />Clients Choose Us.
+        </h2>
+        <p style="font-size:0.9375rem;color:rgba(255,255,255,0.45);line-height:1.85;margin-bottom:2rem;">
+          We're not for everyone — and that's intentional. Here's what makes us different from a typical contractor or architecture firm.
+        </p>
+        <a href="/contact" class="btn-primary">Book a Discovery Call →</a>
       </div>
-
-      <div class="accordion" id="whyAccordion">
-
-        <div class="accordion-item">
-          <button class="accordion-trigger" aria-expanded="false">
-            <span class="accordion-num">01</span>
+      <!-- Right column: accordion -->
+      <div class="reveal d2">
+        <div class="accordion-item open">
+          <button class="accordion-btn" onclick="toggleAcc(this)">
             <span class="accordion-title">Designer-Led From Day One</span>
-            <span class="accordion-icon">+</span>
+            <span class="acc-icon"></span>
           </button>
-          <div class="accordion-panel">
-            <p>Unlike general contractors, we bring design thinking before a single wall goes up. Siting, light, proportion, and sustainability are decisions made at the start — not afterthoughts. Your project begins with intent.</p>
-            <a href="#contact" class="accordion-link">Learn More →</a>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              Unlike general contractors, we bring design thinking before a single wall goes up. Siting, light, proportion, and sustainability are decisions made at the start — not afterthoughts.
+            </div>
           </div>
         </div>
-
         <div class="accordion-item">
-          <button class="accordion-trigger" aria-expanded="false">
-            <span class="accordion-num">02</span>
+          <button class="accordion-btn" onclick="toggleAcc(this)">
             <span class="accordion-title">One Studio. Full Accountability.</span>
-            <span class="accordion-icon">+</span>
+            <span class="acc-icon"></span>
           </button>
-          <div class="accordion-panel">
-            <p>You have one phone number and one team responsible for design and construction. No finger-pointing between your architect and your builder. When something needs to change, we own it — start to finish.</p>
-            <a href="#contact" class="accordion-link">Book a Call →</a>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              You have one phone number and one team responsible for design and construction. No finger-pointing between your architect and your builder.
+            </div>
           </div>
         </div>
-
         <div class="accordion-item">
-          <button class="accordion-trigger" aria-expanded="false">
-            <span class="accordion-num">03</span>
+          <button class="accordion-btn" onclick="toggleAcc(this)">
             <span class="accordion-title">Sustainability Is the Default</span>
-            <span class="accordion-icon">+</span>
+            <span class="acc-icon"></span>
           </button>
-          <div class="accordion-panel">
-            <p>We don't offer a "green option." Every project starts with high-performance building science baked in. Lower energy bills and a smaller footprint aren't extras — they're the baseline. That's what it means to build responsibly.</p>
-            <a href="#about" class="accordion-link">Our Philosophy →</a>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              We don't offer a 'green option.' Every project starts with high-performance building science baked in. Lower energy bills and a smaller footprint aren't extras — they're the baseline.
+            </div>
           </div>
         </div>
-
         <div class="accordion-item">
-          <button class="accordion-trigger" aria-expanded="false">
-            <span class="accordion-num">04</span>
-            <span class="accordion-title">Licensed Architects. Certified Builders.</span>
-            <span class="accordion-icon">+</span>
+          <button class="accordion-btn" onclick="toggleAcc(this)">
+            <span class="accordion-title">Licensed Architects, Certified Builders</span>
+            <span class="acc-icon"></span>
           </button>
-          <div class="accordion-panel">
-            <p>Elliot Nolter is a licensed architect in PA and NJ, a Certified Passive House Consultant (CPHC), and a Sustainable Homes Professional. Our credentials are specific and verifiable — because you deserve to know exactly who's designing your home.</p>
-            <a href="#contact" class="accordion-link">Book a Call →</a>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              Elliot Nolter is a licensed architect in PA and NJ, a Certified Passive House Consultant (CPHC), and a Sustainable Homes Professional (SHP). Credentials that are specific and verifiable.
+            </div>
           </div>
         </div>
-
         <div class="accordion-item">
-          <button class="accordion-trigger" aria-expanded="false">
-            <span class="accordion-num">05</span>
+          <button class="accordion-btn" onclick="toggleAcc(this)">
             <span class="accordion-title">We Qualify the Fit First</span>
-            <span class="accordion-icon">+</span>
+            <span class="acc-icon"></span>
           </button>
-          <div class="accordion-panel">
-            <p>We'll tell you honestly if we're the right team for your project. The paid consultation is designed to give you real value whether we work together or not. We'd rather earn your trust than your signature.</p>
-            <a href="#contact" class="accordion-link">Schedule a Consultation →</a>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              We'll tell you honestly if we're the right team for your project. The paid consultation is designed to give you real value whether we work together or not.
+            </div>
           </div>
         </div>
-
         <div class="accordion-item">
-          <button class="accordion-trigger" aria-expanded="false">
-            <span class="accordion-num">06</span>
+          <button class="accordion-btn" onclick="toggleAcc(this)">
             <span class="accordion-title">Craft That Lasts a Century</span>
-            <span class="accordion-icon">+</span>
+            <span class="acc-icon"></span>
           </button>
-          <div class="accordion-panel">
-            <p>Our goal isn't to build what you want right now. It's to build what you'll still love in 100 years. That requires different decisions at every stage — material choices, structural planning, energy systems. We think long-term because you deserve long-term.</p>
-            <a href="#portfolio" class="accordion-link">See Our Work →</a>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              Our goal isn't to build what you want right now. It's to build what you'll still love in 100 years. That requires different decisions at every stage.
+            </div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       SECTION 9: FEATURED PROJECTS GALLERY
-       ============================================================ -->
-  <section class="portfolio-section" id="portfolio">
-    <div class="portfolio-header">
-      <span class="section-eyebrow">OUR WORK</span>
-      <h2 class="section-title">Every Project Tells a Story.</h2>
-      <p class="section-subtitle">Curated work from our studio — residential renovations, new builds, and sustainability-forward design across the Lehigh Valley.</p>
-    </div>
+  <!-- ═══════════════════════════════════════════════
+       9. FEATURED PROJECTS GALLERY
+  ═══════════════════════════════════════════════ -->
+  <section class="portfolio-section">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div class="portfolio-header reveal">
+        <div>
+          <p class="section-label">Selected Work</p>
+          <h2 class="font-display"
+              style="font-size:clamp(2rem,4vw,3.25rem);font-weight:400;letter-spacing:-0.02em;line-height:1.08;">
+            Every Project<br /><em style="font-weight:300;color:var(--mid);">Tells a Story.</em>
+          </h2>
+        </div>
+        <a href="/portfolio" class="btn-outline" style="align-self:flex-end;">
+          See All Projects →
+        </a>
+      </div>
 
-    <div class="portfolio-grid">
-
-      <div class="portfolio-card">
-        <div class="portfolio-img-wrap">
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80&fit=crop" alt="Bethlehem Net-Zero Renovation" class="portfolio-img" />
-          <div class="portfolio-hover">
-            <a href="#portfolio" class="portfolio-view-link">View Project →</a>
+      <div class="portfolio-main-grid">
+        <!-- Large left -->
+        <div class="pcard reveal" style="height:560px;">
+          <img src="https://placehold.co/800x720/1C2826/253530?text=+"
+               alt="Bethlehem Net-Zero Renovation" />
+          <div class="pcard-overlay"></div>
+          <div class="pcard-info">
+            <p class="pcard-tag">Residential Addition &nbsp;·&nbsp; Passive House</p>
+            <p class="pcard-title">Bethlehem Net-Zero Renovation</p>
+            <p class="pcard-cta">View Project →</p>
           </div>
         </div>
-        <div class="portfolio-card-info">
-          <span class="portfolio-tag">Residential Renovation · Passive House</span>
-          <h3 class="portfolio-project-name">Bethlehem Net-Zero Renovation</h3>
+        <!-- Right stack -->
+        <div class="portfolio-right-stack">
+          <div class="pcard reveal d2" style="height:272px;">
+            <img src="https://placehold.co/560x400/202E2A/2A3A32?text=+"
+                 alt="Easton Custom Home" />
+            <div class="pcard-overlay"></div>
+            <div class="pcard-info">
+              <p class="pcard-tag">New Construction</p>
+              <p class="pcard-title">Easton Custom Home</p>
+              <p class="pcard-cta">View Project →</p>
+            </div>
+          </div>
+          <div class="pcard reveal d3" style="height:272px;">
+            <img src="https://placehold.co/560x400/1E2C24/283428?text=+"
+                 alt="Allentown Mixed-Use Conversion" />
+            <div class="pcard-overlay"></div>
+            <div class="pcard-info">
+              <p class="pcard-tag">Commercial &nbsp;·&nbsp; Adaptive Reuse</p>
+              <p class="pcard-title">Allentown Mixed-Use Conversion</p>
+              <p class="pcard-cta">View Project →</p>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="portfolio-card">
-        <div class="portfolio-img-wrap">
-          <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=900&q=80&fit=crop" alt="Easton Family Addition" class="portfolio-img" />
-          <div class="portfolio-hover">
-            <a href="#portfolio" class="portfolio-view-link">View Project →</a>
-          </div>
-        </div>
-        <div class="portfolio-card-info">
-          <span class="portfolio-tag">Residential Addition · New Construction</span>
-          <h3 class="portfolio-project-name">Easton Family Addition</h3>
-        </div>
-      </div>
-
-      <div class="portfolio-card">
-        <div class="portfolio-img-wrap">
-          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=80&fit=crop" alt="Allentown Sustainable Remodel" class="portfolio-img" />
-          <div class="portfolio-hover">
-            <a href="#portfolio" class="portfolio-view-link">View Project →</a>
-          </div>
-        </div>
-        <div class="portfolio-card-info">
-          <span class="portfolio-tag">Full Renovation · Sustainability Consulting</span>
-          <h3 class="portfolio-project-name">Allentown Sustainable Remodel</h3>
+      <!-- Full-width 4th card -->
+      <div class="pcard reveal" style="height:280px;margin-top:0.875rem;">
+        <img src="https://placehold.co/1400x400/1A2820/222E26?text=+"
+             alt="Pocono Mountain Retreat" />
+        <div class="pcard-overlay"></div>
+        <div class="pcard-info">
+          <p class="pcard-tag">Residential &nbsp;·&nbsp; Sustainability-Forward</p>
+          <p class="pcard-title">Pocono Mountain Retreat</p>
+          <p class="pcard-cta">View Project →</p>
         </div>
       </div>
 
-    </div>
-
-    <div class="portfolio-cta">
-      <a href="#portfolio" class="btn-outline">See All Projects →</a>
+      <div style="text-align:center;margin-top:2.5rem;" class="reveal">
+        <a href="/portfolio" class="btn-outline">See All Projects →</a>
+      </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       SECTION 10: SHOP / RESOURCES PLACEHOLDER
-       ============================================================ -->
+  <!-- ═══════════════════════════════════════════════
+       10. SHOP / RESOURCES PLACEHOLDER
+  ═══════════════════════════════════════════════ -->
   <section class="shop-section">
-    <div class="shop-header">
-      <span class="section-eyebrow light">RESOURCES &amp; TOOLS</span>
-      <h2 class="section-title light">Resources &amp; Plan Sets — Coming Soon</h2>
-      <p class="section-subtitle light">We're developing a library of plan sets, guides, and tools for homeowners and design professionals.</p>
-    </div>
-
-    <div class="shop-grid">
-      <div class="shop-card coming-soon">
-        <div class="shop-card-img-wrap">
-          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80&fit=crop" alt="Plan Sets" class="shop-card-img" />
-          <div class="shop-coming-badge">Coming Soon</div>
-        </div>
-        <span class="shop-card-label">Plan Sets</span>
+    <div style="max-width:1100px;margin:0 auto;">
+      <div class="reveal" style="text-align:center;margin-bottom:3rem;">
+        <p class="section-label" style="justify-content:center;color:rgba(27,173,166,0.75);">Resources &amp; Plan Sets</p>
+        <h2 class="font-display"
+            style="font-size:clamp(2rem,4vw,3rem);font-weight:400;letter-spacing:-0.02em;color:white;line-height:1.08;margin-bottom:1rem;">
+          Build Smarter.<br />
+          <em style="color:var(--teal);font-weight:300;font-style:italic;">Start Here.</em>
+        </h2>
+        <p style="font-size:0.9375rem;color:rgba(255,255,255,0.5);line-height:1.8;max-width:520px;margin:0 auto 2rem;">
+          We're developing a library of plan sets, guides, and tools for homeowners and design professionals. Be first to know when they launch.
+        </p>
       </div>
 
-      <div class="shop-card coming-soon">
-        <div class="shop-card-img-wrap">
-          <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80&fit=crop" alt="How-To Guides" class="shop-card-img" />
-          <div class="shop-coming-badge">Coming Soon</div>
+      <div class="shop-grid reveal d1">
+        <div class="shop-card">
+          <div class="coming-badge">Coming Soon</div>
+          <p class="font-display" style="font-size:1.25rem;font-weight:500;color:white;margin-bottom:0.375rem;">Plan Sets</p>
+          <p style="font-size:0.8125rem;color:rgba(255,255,255,0.38);">Residential &amp; ADU blueprints</p>
         </div>
-        <span class="shop-card-label">How-To Guides</span>
+        <div class="shop-card">
+          <div class="coming-badge">Coming Soon</div>
+          <p class="font-display" style="font-size:1.25rem;font-weight:500;color:white;margin-bottom:0.375rem;">How-To Guides</p>
+          <p style="font-size:0.8125rem;color:rgba(255,255,255,0.38);">High-performance building</p>
+        </div>
+        <div class="shop-card">
+          <div class="coming-badge">Coming Soon</div>
+          <p class="font-display" style="font-size:1.25rem;font-weight:500;color:white;margin-bottom:0.375rem;">Sustainability Toolkits</p>
+          <p style="font-size:0.8125rem;color:rgba(255,255,255,0.38);">Energy modeling &amp; Passive House</p>
+        </div>
+        <div class="shop-card">
+          <div class="coming-badge">Coming Soon</div>
+          <p class="font-display" style="font-size:1.25rem;font-weight:500;color:white;margin-bottom:0.375rem;">Homeowner Resources</p>
+          <p style="font-size:0.8125rem;color:rgba(255,255,255,0.38);">Planning &amp; decision guides</p>
+        </div>
       </div>
 
-      <div class="shop-card coming-soon">
-        <div class="shop-card-img-wrap">
-          <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600&q=80&fit=crop" alt="Sustainability Toolkits" class="shop-card-img" />
-          <div class="shop-coming-badge">Coming Soon</div>
-        </div>
-        <span class="shop-card-label">Sustainability Toolkits</span>
+      <div class="reveal d2" style="text-align:center;margin-top:2.5rem;">
+        <p style="font-size:0.875rem;color:rgba(255,255,255,0.4);margin-bottom:1rem;">
+          Get early access — join the waitlist
+        </p>
+        <form class="email-capture-row" onsubmit="return false;" style="justify-content:center;">
+          <input type="email" placeholder="your@email.com" style="max-width:280px;" />
+          <button type="submit" class="btn-primary">Join Waitlist →</button>
+        </form>
+        <p style="font-size:0.75rem;color:rgba(255,255,255,0.22);margin-top:0.75rem;">No spam. Unsubscribe anytime.</p>
       </div>
-
-      <div class="shop-card coming-soon">
-        <div class="shop-card-img-wrap">
-          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80&fit=crop" alt="Homeowner Resources" class="shop-card-img" />
-          <div class="shop-coming-badge">Coming Soon</div>
-        </div>
-        <span class="shop-card-label">Homeowner Resources</span>
-      </div>
-    </div>
-
-    <div class="shop-waitlist">
-      <h3 class="waitlist-title">Get Early Access</h3>
-      <p class="waitlist-sub">Join the waitlist and be first to know when resources are available.</p>
-      <form class="waitlist-form" id="waitlistForm">
-        <input type="text" placeholder="First Name" class="waitlist-input" required />
-        <input type="email" placeholder="Email Address" class="waitlist-input" required />
-        <button type="submit" class="waitlist-btn">Join the Waitlist →</button>
-      </form>
-      <p class="waitlist-privacy">No spam. Unsubscribe anytime.</p>
     </div>
   </section>
 
-  <!-- ============================================================
-       SECTION 11: LIFESTYLE CTA — CLOSING
-       ============================================================ -->
-  <section class="lifestyle-cta" id="contact">
-    <div class="lifestyle-bg">
-      <img src="https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=1800&q=80&fit=crop" alt="Beautiful renovated home — East Spruce Design Build" class="lifestyle-img" />
-      <div class="lifestyle-overlay"></div>
-    </div>
-    <div class="lifestyle-content">
-      <span class="section-eyebrow light">READY TO START?</span>
-      <h2 class="lifestyle-headline">Great design doesn't just look right.<br />It feels right.</h2>
-      <p class="lifestyle-sub">Apply now for a free feasibility call today, and find out how to incorporate high-performance and sustainable technology into your new home.</p>
-      <a href="mailto:hello@eastspruce.com" class="btn-primary large">Get In Touch →</a>
+  <!-- ═══════════════════════════════════════════════
+       11. LIFESTYLE / CLOSING CTA
+  ═══════════════════════════════════════════════ -->
+  <section class="closing-section">
+    <img class="closing-img" src="https://placehold.co/1920x700/18201A/1E281E?text=+"
+         alt="Completed East Spruce project" />
+    <div class="closing-overlay"></div>
+    <div class="closing-content">
+      <div class="reveal">
+        <p class="section-label" style="color:rgba(27,173,166,0.75);">Ready to Begin</p>
+        <h2 class="font-display"
+            style="font-size:clamp(2.25rem,5vw,4.5rem);font-weight:400;line-height:1.03;letter-spacing:-0.025em;color:white;margin-bottom:1.125rem;">
+          Great design doesn't<br />just look right.<br />
+          <em style="color:var(--teal);font-weight:300;">It feels right.</em>
+        </h2>
+        <p style="font-size:1rem;color:rgba(255,255,255,0.6);line-height:1.8;max-width:460px;margin-bottom:2.25rem;">
+          Apply for a free feasibility call and find out how to bring high-performance, sustainable design to your next project.
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;">
+          <a href="/contact" class="btn-primary"
+             style="padding:0.875rem 2rem;font-size:0.875rem;">Get In Touch →</a>
+          <a href="/ask-the-expert" class="btn-outline-ghost"
+             style="padding:0.875rem 2rem;font-size:0.875rem;">Ask the Expert</a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       SECTION 12: FOOTER
-       ============================================================ -->
-  <footer class="site-footer" id="about">
-    <div class="footer-inner">
-
-      <!-- Column 1: Brand -->
-      <div class="footer-col footer-brand">
-        <div class="footer-logo">
-          <span class="logo-mark">ESDB</span>
-          <div class="footer-logo-text">
-            <span class="logo-line1">EAST SPRUCE</span>
-            <span class="logo-line2">DESIGN BUILD</span>
+  <!-- ═══════════════════════════════════════════════
+       12. FOOTER
+  ═══════════════════════════════════════════════ -->
+  <footer>
+    <div style="max-width:1200px;margin:0 auto;">
+      <div class="footer-grid">
+        <!-- Brand -->
+        <div>
+          <img src="/logo-black.png" alt="East Spruce Design Build"
+               style="height:1.875rem;width:auto;margin-bottom:1.125rem;filter:invert(1) brightness(2);mix-blend-mode:screen;" />
+          <p class="font-display"
+             style="font-size:1rem;font-style:italic;font-weight:400;color:rgba(255,255,255,0.5);margin-bottom:0.875rem;line-height:1.5;">
+            Resourceful. Responsible. Design.
+          </p>
+          <p style="font-size:0.8125rem;color:rgba(255,255,255,0.3);line-height:1.75;margin-bottom:1.375rem;">
+            Bethlehem, PA 18018<br />
+            Architecture &amp; Design/Build Studio<br />
+            Licensed in PA &amp; NJ
+          </p>
+          <div style="display:flex;gap:1.25rem;">
+            <a href="#" class="footer-link">Instagram</a>
+            <a href="#" class="footer-link">Houzz</a>
           </div>
         </div>
-        <p class="footer-tagline">Resourceful. Responsible. Design.</p>
-        <address class="footer-address">Bethlehem, PA 18018</address>
-        <div class="footer-socials">
-          <a href="#" class="social-link" aria-label="Instagram">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-          </a>
-          <a href="#" class="social-link" aria-label="Houzz">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L4 8v14h6v-6h4v6h6V8L12 2z"/></svg>
-          </a>
+
+        <!-- Navigation -->
+        <div>
+          <p style="font-size:0.65rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:1.125rem;">
+            Navigation
+          </p>
+          <a href="/portfolio" class="footer-nav-link">Portfolio</a>
+          <a href="/services" class="footer-nav-link">Services</a>
+          <a href="/about" class="footer-nav-link">About</a>
+          <a href="/blog" class="footer-nav-link">Blog</a>
+          <a href="/contact" class="footer-nav-link">Contact</a>
+          <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.06);">
+            <a href="#" class="footer-nav-link" style="color:rgba(255,255,255,0.25);font-size:0.8125rem;">Privacy Policy</a>
+          </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div>
+          <p style="font-size:0.65rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:1.125rem;">
+            Stay in the Loop
+          </p>
+          <p class="font-display"
+             style="font-size:1.375rem;font-weight:400;color:white;margin-bottom:0.625rem;line-height:1.2;">
+            Get Project Inspiration + Updates
+          </p>
+          <p style="font-size:0.8125rem;color:rgba(255,255,255,0.38);line-height:1.75;margin-bottom:1.25rem;">
+            Design ideas, sustainable building tips, and occasional project stories from our studio.
+          </p>
+          <form onsubmit="return false;" style="display:flex;flex-direction:column;gap:0.5rem;">
+            <input type="text" placeholder="First Name" class="footer-input" />
+            <input type="email" placeholder="Email Address" class="footer-input" />
+            <button type="submit" class="btn-primary" style="justify-content:center;font-size:0.8125rem;">
+              Subscribe →
+            </button>
+          </form>
+          <p style="font-size:0.75rem;color:rgba(255,255,255,0.2);margin-top:0.625rem;">No spam. Unsubscribe anytime.</p>
         </div>
       </div>
 
-      <!-- Column 2: Navigation -->
-      <div class="footer-col footer-nav">
-        <h4 class="footer-col-title">Navigate</h4>
-        <ul class="footer-links">
-          <li><a href="#portfolio" class="footer-link">Portfolio</a></li>
-          <li><a href="#services" class="footer-link">Services</a></li>
-          <li><a href="#about" class="footer-link">About</a></li>
-          <li><a href="#contact" class="footer-link">Contact</a></li>
-          <li><a href="#" class="footer-link footer-link-muted">Blog</a></li>
-          <li><a href="#" class="footer-link footer-link-muted">Privacy Policy</a></li>
-        </ul>
+      <!-- Bottom bar -->
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.06);">
+        <p style="font-size:0.75rem;color:rgba(255,255,255,0.2);">
+          © 2026 East Spruce Design Build. All rights reserved.
+        </p>
+        <p style="font-size:0.75rem;color:rgba(255,255,255,0.2);">
+          Licensed in PA &amp; NJ &nbsp;·&nbsp; CPHC Certified
+        </p>
       </div>
-
-      <!-- Column 3: Newsletter -->
-      <div class="footer-col footer-newsletter">
-        <h4 class="footer-col-title">Stay in the Loop</h4>
-        <p class="footer-newsletter-sub">Design ideas, sustainable building tips, and occasional project stories from our studio.</p>
-        <form class="footer-form" id="footerNewsletterForm">
-          <input type="text" placeholder="First Name" class="footer-input" />
-          <input type="email" placeholder="Email Address" class="footer-input" required />
-          <button type="submit" class="footer-submit">Subscribe →</button>
-        </form>
-        <p class="footer-privacy">No spam. Unsubscribe anytime.</p>
-      </div>
-
-    </div>
-
-    <div class="footer-bottom">
-      <p class="footer-copy">© <span id="currentYear"></span> East Spruce Design Build. Licensed in PA &amp; NJ.</p>
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script>
+    // ── Word cycling ──
+    const words = ['Real Life.', 'Family Life.', 'Real Memories.', 'Simple Living.', 'How You Live.'];
+    let idx = 0;
+    const stage   = document.getElementById('word-stage');
+    const current = document.getElementById('word-current');
+    const next    = document.getElementById('word-next');
+
+    // Set stage width to widest word to prevent layout shift
+    function measureWords() {
+      const temp = document.createElement('span');
+      temp.style.cssText = 'font-family:Cormorant Garant,serif;font-size:' + getComputedStyle(current).fontSize + ';font-style:italic;font-weight:300;visibility:hidden;position:absolute;white-space:nowrap;';
+      document.body.appendChild(temp);
+      let maxW = 0;
+      words.forEach(w => { temp.textContent = w; maxW = Math.max(maxW, temp.offsetWidth); });
+      document.body.removeChild(temp);
+      stage.style.minWidth = maxW + 'px';
+    }
+
+    function cycleWord() {
+      idx = (idx + 1) % words.length;
+      next.textContent = words[idx];
+      next.style.transform = 'translateY(110%)';
+      next.style.opacity = '0';
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          current.style.transform = 'translateY(-110%)';
+          current.style.opacity = '0';
+          next.style.transform = 'translateY(0)';
+          next.style.opacity = '1';
+          setTimeout(() => {
+            current.textContent = words[idx];
+            current.style.cssText = '';
+            next.style.cssText = '';
+          }, 520);
+        });
+      });
+    }
+
+    window.addEventListener('load', () => {
+      measureWords();
+      setTimeout(() => setInterval(cycleWord, 3200), 2200);
+    });
+
+    // ── Sticky header ──
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('compact', window.scrollY > 40);
+    }, { passive: true });
+
+    // ── Mobile menu ──
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+    function closeMobileMenu() {
+      document.getElementById('mobile-menu').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // ── Accordion ──
+    function toggleAcc(btn) {
+      const item = btn.closest('.accordion-item');
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.accordion-item.open').forEach(el => el.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    }
+
+    // ── Scroll reveal ──
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.07, rootMargin: '0px 0px -32px 0px' });
+    revealEls.forEach(el => revealObs.observe(el));
+  </script>
 </body>
 </html>

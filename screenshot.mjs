@@ -1,51 +1,56 @@
 import puppeteer from 'puppeteer-core';
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-// Mac Chrome path (installed via Puppeteer cache)
-const CHROME_PATH =
-  process.env.CHROME_PATH ||
-  `${process.env.HOME}/.cache/puppeteer/chrome/mac-145.0.7632.77/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing`;
-
-const SCREENSHOTS_DIR = path.join(__dirname, 'temporary screenshots');
-
-// Ensure screenshots directory exists
-if (!fs.existsSync(SCREENSHOTS_DIR)) {
-  fs.mkdirSync(SCREENSHOTS_DIR, { recursive: true });
-}
-
-// Determine next auto-incremented filename
-function nextFilename(label) {
-  const files = fs.readdirSync(SCREENSHOTS_DIR).filter(f => f.startsWith('screenshot-') && f.endsWith('.png'));
-  let max = 0;
-  for (const f of files) {
-    const match = f.match(/^screenshot-(\d+)/);
-    if (match) max = Math.max(max, parseInt(match[1], 10));
-  }
-  const n = max + 1;
-  return label ? `screenshot-${n}-${label}.png` : `screenshot-${n}.png`;
-}
-
 const url = process.argv[2] || 'http://localhost:3000';
 const label = process.argv[3] || '';
 
-(async () => {
-  const browser = await puppeteer.launch({
-    executablePath: CHROME_PATH,
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+const screenshotsDir = path.join(__dirname, 'temporary screenshots');
+if (!fs.existsSync(screenshotsDir)) fs.mkdirSync(screenshotsDir, { recursive: true });
+
+let n = 1;
+const base = label ? `screenshot-${n}-${label}.png` : `screenshot-${n}.png`;
+while (fs.existsSync(path.join(screenshotsDir, label ? `screenshot-${n}-${label}.png` : `screenshot-${n}.png`))) n++;
+const outFile = path.join(screenshotsDir, label ? `screenshot-${n}-${label}.png` : `screenshot-${n}.png`);
+
+const browser = await puppeteer.launch({
+  executablePath: '/Users/josephpascucci/.cache/puppeteer/chrome/mac-145.0.7632.77/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing',
+  headless: true,
+  args: ['--no-sandbox', '--disable-setuid-sandbox'],
+});
+
+const page = await browser.newPage();
+await page.setViewport({ width: 1440, height: 900 });
+await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
+// Wait for fonts to load
+await new Promise(r => setTimeout(r, 800));
+// Force all reveal animations to complete instantly
+await page.evaluate(() => {
+  // Disable all CSS transitions temporarily
+  const style = document.createElement('style');
+  style.id = 'no-transitions';
+  style.textContent = '*, *::before, *::after { transition-duration: 0s !important; animation-duration: 0s !important; }';
+  document.head.appendChild(style);
+  // Force all reveal elements visible
+  document.querySelectorAll('.reveal').forEach(el => {
+    el.classList.add('visible');
   });
+  // Also trigger hero animations
+  document.querySelectorAll('[style*="opacity: 0"]').forEach(el => {
+    el.style.opacity = '1';
+    el.style.transform = 'none';
+  });
+});
+await new Promise(r => setTimeout(r, 200));
+// Re-enable transitions for a natural look
+await page.evaluate(() => {
+  const s = document.getElementById('no-transitions');
+  if (s) s.remove();
+});
+await new Promise(r => setTimeout(r, 400));
+await page.screenshot({ path: outFile, fullPage: true });
+await browser.close();
 
-  const page = await browser.newPage();
-  await page.setViewport({ width: 1440, height: 900 });
-  await page.goto(url, { waitUntil: 'networkidle0', timeout: 30000 });
-
-  const filename = nextFilename(label);
-  const outputPath = path.join(SCREENSHOTS_DIR, filename);
-  await page.screenshot({ path: outputPath, fullPage: true });
-  await browser.close();
-
-  console.log(`Screenshot saved: temporary screenshots/${filename}`);
-})();
+console.log(`Saved: ${outFile}`);

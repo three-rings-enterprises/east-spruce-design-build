@@ -37,6 +37,13 @@ await page.evaluate(() => {
   document.querySelectorAll('.reveal').forEach(el => {
     el.classList.add('visible');
   });
+  // Force brand words visible
+  document.querySelectorAll('.brand-word').forEach(el => {
+    el.classList.add('visible');
+  });
+  // Force typewriter to show first word
+  const twEl = document.getElementById('typewriter-text');
+  if (twEl && !twEl.textContent) twEl.textContent = 'Real Life.';
   // Also trigger hero animations
   document.querySelectorAll('[style*="opacity: 0"]').forEach(el => {
     el.style.opacity = '1';

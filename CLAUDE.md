@@ -14,6 +14,12 @@
 - `serve.mjs` lives in the project root. Start it in the background before taking any screenshots.
 - If the server is already running, do not start a second instance.
 
+## Mobile Preview
+- When presenting a design for review, provide the local network URL so the user can preview on both desktop and mobile.
+- Get the local IP: `ipconfig getifaddr en0`
+- Share the link as: `http://<LOCAL_IP>:3000` (e.g., `http://192.168.1.201:3000`)
+- This works on any device connected to the same Wi-Fi network — desktop browser and phone alike.
+
 ## Screenshot Workflow
 - `puppeteer-core` is installed (see `package.json`). Chrome binary: `~/.cache/puppeteer/chrome/mac-145.0.7632.77/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing`.
 - **Always screenshot from localhost:** `node screenshot.mjs http://localhost:3000`

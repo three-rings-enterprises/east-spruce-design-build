@@ -8,6 +8,6 @@
     "screenshot": "node screenshot.mjs"
   },
   "dependencies": {
-    "puppeteer-core": "*"
+    "puppeteer-core": "^24.37.5"
   }
 }

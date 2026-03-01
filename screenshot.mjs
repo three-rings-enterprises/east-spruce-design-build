@@ -37,6 +37,10 @@ await page.evaluate(() => {
   document.querySelectorAll('.reveal').forEach(el => {
     el.classList.add('visible');
   });
+  // Force animate-on-scroll elements visible
+  document.querySelectorAll('.animate-on-scroll').forEach(el => {
+    el.classList.add('is-visible');
+  });
   // Force brand words visible
   document.querySelectorAll('.brand-word').forEach(el => {
     el.classList.add('visible');

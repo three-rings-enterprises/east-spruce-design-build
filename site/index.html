@@ -296,7 +296,7 @@
       display: inline-block;
       width: 2px;
       height: 0.85em;
-      background: var(--teal);
+      background: rgba(255,255,255,0.88);
       margin-left: 0.04em;
       vertical-align: baseline;
       position: relative;
@@ -1492,7 +1492,17 @@
 
   <script>
     // ── Typewriter word cycling ──
-    const twWords = ['Real Life.', 'Family Life.', 'Real Memories.', 'Simple Living.', 'How You Live.'];
+    const twWords = [
+      'Real Life.', 
+      'Family Life.', 
+      'Lasting Memories.', 
+      'Simple Living.', 
+      'Retirement.', 
+      'Work-Life Balance.', 
+      'Creating Experiences.',
+      'Sweet Sixteens.',
+      'Sustainibility.'
+    ];
     let twIdx = 0;
     const twEl = document.getElementById('typewriter-text');
     const twCursor = document.getElementById('typewriter-cursor');

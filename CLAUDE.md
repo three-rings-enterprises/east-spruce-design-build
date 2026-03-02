@@ -1,60 +1,32 @@
-# CLAUDE.md — Frontend Website Rules
+# CLAUDE.md — Project Orchestrator
 
-## Always Do First
-- **Invoke the `frontend-design` skill** before writing any frontend code, every session, no exceptions.
+## Agents
 
-## Reference Images
-- If a reference image is provided: match layout, spacing, typography, and color exactly. Swap in placeholder content (images via `https://placehold.co/`, generic copy). Do not improve or add to the design.
-- If no reference image: design from scratch with high craft (see guardrails below).
-- Screenshot your output, compare against reference, fix mismatches, re-screenshot. Do at least 2 comparison rounds. Stop only when no visible differences remain or user says so.
+This project uses two specialized agents. Dispatch them using the Agent tool with the contents of their role file as instructions.
 
-## Local Server
-- **Always serve on localhost** — never screenshot a `file:///` URL.
-- Start the dev server: `node serve.mjs` (serves `site/` at `http://localhost:3000`)
-- `serve.mjs` lives in the project root. Start it in the background before taking any screenshots.
-- If the server is already running, do not start a second instance.
+### Web Designer
+- **Role file:** `agents/web-designer.md`
+- **Trigger:** User asks to design, build, or create a website/page
+- **Output:** HTML files in `site/` served at `http://localhost:3000`
+- **Requires:** The `frontend-design` skill
 
-## Mobile Preview
-- When presenting a design for review, provide the local network URL so the user can preview on both desktop and mobile.
-- Get the local IP: `ipconfig getifaddr en0`
-- Share the link as: `http://<LOCAL_IP>:3000` (e.g., `http://192.168.1.201:3000`)
-- This works on any device connected to the same Wi-Fi network — desktop browser and phone alike.
+### WordPress Developer
+- **Role file:** `agents/wordpress-developer.md`
+- **Trigger:** User asks to convert to WordPress, deploy to Studio, or create a WordPress theme
+- **Input:** HTML files in `site/`
+- **Output:** WordPress block theme deployed to a local Studio site
 
-## Screenshot Workflow
-- `puppeteer-core` is installed (see `package.json`). Chrome binary: `~/.cache/puppeteer/chrome/mac-145.0.7632.77/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing`.
-- **Always screenshot from localhost:** `node screenshot.mjs http://localhost:3000`
-- Screenshots are saved automatically to `./temporary screenshots/screenshot-N.png` (auto-incremented, never overwritten).
-- Optional label suffix: `node screenshot.mjs http://localhost:3000 label` → saves as `screenshot-N-label.png`
-- `screenshot.mjs` lives in the project root. Use it as-is.
-- After screenshotting, read the PNG from `temporary screenshots/` with the Read tool — Claude can see and analyze the image directly.
-- When comparing, be specific: "heading is 32px but reference shows ~24px", "card gap is 16px but should be 24px"
-- Check: spacing/padding, font size/weight/line-height, colors (exact hex), alignment, border-radius, shadows, image sizing
+## Dispatching Rules
 
-## Output Defaults
-- Single `index.html` file, all styles inline, unless user says otherwise
-- Tailwind CSS via CDN: `<script src="https://cdn.tailwindcss.com"></script>`
-- Placeholder images: `https://placehold.co/WIDTHxHEIGHT`
-- Mobile-first responsive
+1. Read the agent's role file before dispatching — pass its full contents as the agent prompt.
+2. Include the user's request and any relevant context (site description, brand requirements, etc.) in the prompt.
+3. Only one agent runs at a time. Do not run both in parallel.
+4. If the user asks to design AND convert in one request, run the web designer first. After it completes, run the WordPress developer.
 
-## Brand Assets
-- Always check the `brand_assets/` folder before designing. It may contain logos, color guides, style guides, or images.
-- If assets exist there, use them. Do not use placeholders where real assets are available.
-- If a logo is present, use it. If a color palette is defined, use those exact values — do not invent brand colors.
+## Handoff Protocol
 
-## Anti-Generic Guardrails
-- **Colors:** Never use default Tailwind palette (indigo-500, blue-600, etc.). Pick a custom brand color and derive from it.
-- **Shadows:** Never use flat `shadow-md`. Use layered, color-tinted shadows with low opacity.
-- **Typography:** Never use the same font for headings and body. Pair a display/serif with a clean sans. Apply tight tracking (`-0.03em`) on large headings, generous line-height (`1.7`) on body.
-- **Gradients:** Layer multiple radial gradients. Add grain/texture via SVG noise filter for depth.
-- **Animations:** Only animate `transform` and `opacity`. Never `transition-all`. Use spring-style easing.
-- **Interactive states:** Every clickable element needs hover, focus-visible, and active states. No exceptions.
-- **Images:** Add a gradient overlay (`bg-gradient-to-t from-black/60`) and a color treatment layer with `mix-blend-multiply`.
-- **Spacing:** Use intentional, consistent spacing tokens — not random Tailwind steps.
-- **Depth:** Surfaces should have a layering system (base → elevated → floating), not all sit at the same z-plane.
+The web designer produces HTML files in `site/`. The WordPress developer reads from `site/` to convert.
 
-## Hard Rules
-- Do not add sections, features, or content not in the reference
-- Do not "improve" a reference design — match it
-- Do not stop after one screenshot pass
-- Do not use `transition-all`
-- Do not use default Tailwind blue/indigo as primary color
+When handing off from web designer → WordPress developer:
+- Confirm the HTML site is complete and the user is satisfied before converting.
+- Pass the Studio site name/path if the user specified one, otherwise let the WordPress developer create a new site.

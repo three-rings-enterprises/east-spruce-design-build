@@ -389,7 +389,7 @@
       border-left: 3px solid var(--teal);
     }
     @media (max-width: 900px) {
-      .studio-section { min-height: auto; }
+      .studio-section { min-height: auto !important; padding-top: 300px; }
       .studio-overlay {
         background: linear-gradient(
           180deg,
@@ -401,7 +401,7 @@
         position: relative;
         bottom: auto; right: auto;
         max-width: 100%;
-        margin: -6rem 1.5rem 0;
+        margin: -4rem 1.5rem 2rem;
         z-index: 2;
       }
     }
@@ -702,7 +702,8 @@
       .story-photo-3 { width: 35%; height: 120px; }
 
       /* Studio card */
-      .studio-card { padding: 1.75rem; }
+      .studio-section { padding-top: 240px !important; }
+      .studio-card { padding: 1.75rem; margin-left: 1rem !important; margin-right: 1rem !important; }
 
       /* Elliot portrait */
       .elliot-portrait { height: 340px; }

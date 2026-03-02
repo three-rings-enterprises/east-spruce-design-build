@@ -234,8 +234,8 @@
       height: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 8vw 9vh;
+      justify-content: center;
+      padding: 0 8vw;
       max-width: 1300px;
     }
     .hero-eyebrow {
@@ -476,7 +476,7 @@
     @media (max-width: 600px) {
       .steps-grid { grid-template-columns: 1fr; }
       #site-header { padding: 1rem 1.5rem; }
-      .hero-content { padding: 0 6vw 8vh; }
+      .hero-content { padding: 0 6vw; }
     }
     .step-card {
       position: relative;
@@ -1493,15 +1493,16 @@
   <script>
     // ── Typewriter word cycling ──
     const twWords = [
-      'Real Life.', 
-      'Family Life.', 
-      'Lasting Memories.', 
-      'Simple Living.', 
-      'Retirement.', 
-      'Work-Life Balance.', 
-      'Creating Experiences.',
-      'Sweet Sixteens.',
-      'Sustainibility.'
+      'Real Life.',
+      'Family Life.',
+      'Lasting Memories.',
+      'Simple Living.',
+      'Peace of Mind.',
+      'Retirement.',
+      'Work-Life Balance.',
+      'Coming Home.',
+      'Growing Up.',
+      'What Matters.'
     ];
     let twIdx = 0;
     const twEl = document.getElementById('typewriter-text');

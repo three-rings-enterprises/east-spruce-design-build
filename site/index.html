@@ -940,6 +940,84 @@
     .d4 { transition-delay: 0.38s; }
     .d5 { transition-delay: 0.48s; }
 
+    /* ─── MOBILE POLISH (Phase 2) ─── */
+    @media (max-width: 900px) {
+      .portfolio-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.25rem;
+      }
+      .proof-bar { padding: 1rem 1.5rem; }
+      .proof-item { padding: 0 1rem; }
+    }
+
+    @media (max-width: 600px) {
+      /* Announcement bar */
+      #announce-bar {
+        font-size: 0.72rem;
+        padding: 0.5rem 2.5rem 0.5rem 1rem;
+      }
+
+      /* Header compact state */
+      #site-header.compact { padding: 0.7rem 1.5rem; }
+
+      /* Hero */
+      .hero { min-height: 540px; }
+      .hero-sub { margin-bottom: 2rem; }
+      .scroll-hint { display: none; }
+
+      /* Proof bar — stack vertically */
+      .proof-bar { padding: 1.25rem 1.5rem; }
+      .proof-bar-inner {
+        flex-direction: column;
+        gap: 0.625rem;
+      }
+      .proof-divider { display: none; }
+      .proof-item {
+        padding: 0;
+        justify-content: center;
+      }
+
+      /* Brand statement */
+      .brand-statement { padding: 4rem 6vw 3.5rem; }
+
+      /* Step cards */
+      .steps-section { padding-top: 4rem; }
+      .steps-header { margin-bottom: 2.5rem; }
+      .step-card { height: 380px; }
+      .step-card + .step-card {
+        border-left: none;
+        border-top: 1px solid rgba(255,255,255,0.06);
+      }
+
+      /* Showcase */
+      .showcase { height: 440px; }
+
+      /* Why section */
+      .why-section { padding: 4rem 6vw; }
+
+      /* Portfolio */
+      .portfolio-section { padding: 4rem 6vw; }
+      .pcard { height: 280px !important; }
+
+      /* Shop / Resources */
+      .shop-section { padding: 4rem 6vw; }
+
+      /* Email capture — stack */
+      .email-capture-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .email-capture-row input { max-width: 100% !important; }
+
+      /* Closing CTA */
+      .closing-section { height: 480px; }
+
+      /* Footer */
+      footer { padding: 3.5rem 6vw 2rem; }
+      .footer-grid { margin-bottom: 2.5rem; }
+    }
+
     /* ─── KEYFRAMES ─── */
     @keyframes fadeUpIn {
       from { opacity: 0; transform: translateY(14px); }
@@ -971,7 +1049,7 @@
       <img src="/logo-black.png" alt="East Spruce Design Build" id="nav-logo"
            style="height:2rem;width:auto;display:block;" />
     </a>
-    <nav style="display:flex;align-items:center;gap:2rem;" class="hidden md:flex">
+    <nav class="hidden md:flex items-center gap-8">
       <a href="/portfolio" class="nav-link">Portfolio</a>
       <a href="/services" class="nav-link">Services</a>
       <a href="/about" class="nav-link">About</a>

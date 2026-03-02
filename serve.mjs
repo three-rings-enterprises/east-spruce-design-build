@@ -19,13 +19,22 @@ const MIME = {
   '.woff': 'font/woff',
   '.woff2': 'font/woff2',
   '.ttf': 'font/ttf',
+  '.mov': 'video/quicktime',
+  '.mp4': 'video/mp4',
+  '.webm': 'video/webm',
 };
 
 const server = http.createServer((req, res) => {
   let urlPath = req.url.split('?')[0];
   if (urlPath === '/' || urlPath === '') urlPath = '/index.html';
 
-  const filePath = path.join(SITE_DIR, urlPath);
+  let filePath = path.join(SITE_DIR, urlPath);
+
+  // Clean URL support: /about → /about.html
+  if (!path.extname(filePath) && !fs.existsSync(filePath)) {
+    const htmlPath = filePath + '.html';
+    if (fs.existsSync(htmlPath)) filePath = htmlPath;
+  }
 
   if (!filePath.startsWith(SITE_DIR)) {
     res.writeHead(403); res.end('Forbidden'); return;

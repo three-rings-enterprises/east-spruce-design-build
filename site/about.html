@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — East Spruce Design Build</title>
+  <meta name="description" content="Meet the studio and founder behind East Spruce Design Build. Licensed architect Elliot Nolter leads sustainable architecture and design/build in Bethlehem, PA." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --teal: #1BADA6;
+      --teal-dark: #148F89;
+      --teal-glow: rgba(27, 173, 166, 0.18);
+      --dark: #141414;
+      --dark-2: #1A2520;
+      --dark-3: #111614;
+      --olive: #344030;
+      --mid: #5A5A5A;
+      --light: #DCDAD5;
+      --warm-white: #F5F3EF;
+      --white: #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      background: var(--white);
+      color: var(--dark);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Subtle grain overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.022;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px;
+    }
+
+    .font-display { font-family: 'Cormorant Garant', Georgia, serif; }
+
+    /* ─── HEADER ─── */
+    #site-header {
+      position: sticky;
+      top: 0; z-index: 100;
+      padding: 1.1rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,0.97);
+      box-shadow: 0 1px 0 var(--light), 0 2px 16px rgba(0,0,0,0.04);
+      backdrop-filter: blur(10px);
+      transition: padding 0.3s ease, box-shadow 0.3s ease;
+    }
+    #site-header.compact {
+      padding: 0.8rem 3rem;
+      box-shadow: 0 1px 0 var(--light), 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .nav-link {
+      font-size: 0.775rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--dark);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 2px;
+      transition: color 0.2s;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 100%;
+      height: 1px;
+      background: var(--teal);
+      transition: right 0.3s ease;
+    }
+    .nav-link:hover { color: var(--teal); }
+    .nav-link:hover::after { right: 0; }
+    .nav-link.active { color: var(--teal); }
+    .nav-link.active::after { right: 0; }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: var(--teal);
+      color: white;
+      font-size: 0.775rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.65rem 1.25rem;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      background: var(--teal-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(27, 173, 166, 0.3), 0 2px 6px rgba(27, 173, 166, 0.15);
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      border: 1.5px solid var(--dark);
+      color: var(--dark);
+      font-size: 0.775rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.65rem 1.25rem;
+      background: transparent;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .btn-outline:hover { background: var(--dark); color: white; }
+
+    .btn-outline-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      border: 1.5px solid rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.8);
+      font-size: 0.775rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.65rem 1.25rem;
+      background: transparent;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .btn-outline-ghost:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.65);
+      color: white;
+    }
+
+    /* ─── SECTION LABEL ─── */
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1.125rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 18px; height: 1.5px;
+      background: var(--teal);
+      flex-shrink: 0;
+    }
+
+    /* ─── HERO VIDEO ─── */
+    .hero-about {
+      position: relative;
+      height: 100vh;
+      min-height: 660px;
+      overflow: hidden;
+      background: var(--dark-2);
+    }
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.55;
+    }
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(0,0,0,0.5) 0%,
+        rgba(0,0,0,0.1) 40%,
+        rgba(0,0,0,0.7) 100%
+      );
+    }
+    .hero-gradient::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 50%; height: 60%;
+      background: radial-gradient(ellipse at bottom right, rgba(27,173,166,0.08) 0%, transparent 60%);
+    }
+    .hero-about-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 8vw;
+      max-width: 1300px;
+    }
+    .hero-about-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      opacity: 0;
+      animation: fadeUpIn 0.6s ease 0.25s forwards;
+    }
+    .hero-about-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px; height: 1.5px;
+      background: var(--teal);
+      flex-shrink: 0;
+    }
+    .hero-about-headline {
+      font-family: 'Cormorant Garant', serif;
+      font-size: clamp(3.25rem, 7.5vw, 7rem);
+      font-weight: 400;
+      line-height: 1;
+      color: white;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.75rem;
+    }
+    .hero-about-line1 {
+      display: block;
+      opacity: 0;
+      animation: fadeUpIn 0.7s ease 0.45s forwards;
+    }
+    .hero-about-line2 {
+      display: block;
+      opacity: 0;
+      animation: fadeUpIn 0.7s ease 0.65s forwards;
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(255,255,255,0.78);
+    }
+    .hero-about-sub {
+      font-size: clamp(0.9375rem, 1.4vw, 1.0625rem);
+      color: rgba(255,255,255,0.6);
+      line-height: 1.75;
+      max-width: 520px;
+      opacity: 0;
+      animation: fadeUpIn 0.7s ease 0.85s forwards;
+    }
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem; right: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      z-index: 2;
+      opacity: 0;
+      animation: fadeUpIn 0.6s ease 1.4s forwards;
+    }
+    .scroll-track {
+      width: 44px; height: 1px;
+      background: rgba(255,255,255,0.18);
+      overflow: hidden; position: relative;
+    }
+    .scroll-fill {
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: var(--teal);
+      animation: scrollPulse 2.8s ease-in-out 1.5s infinite;
+    }
+
+    /* ─── OUR STORY ─── */
+    .story-section {
+      background: var(--warm-white);
+      padding: 7rem 8vw;
+    }
+    .story-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 55% 45%;
+      gap: 4rem;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .story-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+    .story-photos {
+      position: relative;
+      height: 520px;
+    }
+    .story-photo {
+      position: absolute;
+      border-radius: 2px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .story-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .story-photo-1 {
+      width: 65%;
+      height: 340px;
+      top: 0; left: 0;
+      transform: rotate(-2deg);
+      z-index: 2;
+    }
+    .story-photo-2 {
+      width: 55%;
+      height: 260px;
+      bottom: 0; right: 0;
+      transform: rotate(3deg);
+      z-index: 3;
+    }
+    .story-photo-3 {
+      width: 40%;
+      height: 180px;
+      top: 45%; left: 50%;
+      transform: rotate(-1deg) translate(-50%, -30%);
+      z-index: 1;
+      border: 3px solid var(--teal);
+    }
+    @media (max-width: 900px) {
+      .story-photos { height: 380px; }
+      .story-photo-1 { width: 60%; height: 260px; }
+      .story-photo-2 { width: 50%; height: 200px; }
+      .story-photo-3 { width: 38%; height: 140px; }
+    }
+
+    /* ─── STUDIO SECTION ─── */
+    .studio-section {
+      position: relative;
+      min-height: 600px;
+      overflow: hidden;
+    }
+    .studio-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .studio-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(0,0,0,0.0) 0%,
+        rgba(0,0,0,0.15) 40%,
+        rgba(0,0,0,0.82) 100%
+      );
+    }
+    .studio-card {
+      position: absolute;
+      bottom: 4rem;
+      right: 8vw;
+      max-width: 480px;
+      background: rgba(20, 20, 20, 0.92);
+      backdrop-filter: blur(16px);
+      padding: 2.5rem;
+      border-left: 3px solid var(--teal);
+    }
+    @media (max-width: 900px) {
+      .studio-section { min-height: auto; }
+      .studio-overlay {
+        background: linear-gradient(
+          180deg,
+          rgba(0,0,0,0.0) 0%,
+          rgba(0,0,0,0.82) 60%
+        );
+      }
+      .studio-card {
+        position: relative;
+        bottom: auto; right: auto;
+        max-width: 100%;
+        margin: -6rem 1.5rem 0;
+        z-index: 2;
+      }
+    }
+
+    /* ─── PHILOSOPHY SECTION ─── */
+    .philosophy-section {
+      background: var(--dark);
+      padding: 7rem 8vw;
+      position: relative;
+      overflow: hidden;
+    }
+    .philosophy-section::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 480px; height: 480px;
+      background: radial-gradient(circle, rgba(27,173,166,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .philosophy-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    @media (max-width: 900px) {
+      .philosophy-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+    .philosophy-img-wrap {
+      position: relative;
+      height: 460px;
+      overflow: hidden;
+    }
+    .philosophy-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .philosophy-img-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(20,20,20,0.3) 0%, transparent 40%);
+    }
+
+    /* ─── MEET ELLIOT ─── */
+    .elliot-section {
+      background: var(--warm-white);
+      padding: 7rem 8vw;
+    }
+    .elliot-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 55% 45%;
+      gap: 4rem;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .elliot-grid { grid-template-columns: 1fr; }
+    }
+    .elliot-portrait {
+      position: relative;
+      height: 580px;
+      overflow: hidden;
+    }
+    .elliot-portrait img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .elliot-portrait::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.15) 0%, transparent 30%);
+    }
+    @media (max-width: 900px) {
+      .elliot-portrait { height: 420px; }
+    }
+    .credential-inline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      background: rgba(27, 173, 166, 0.08);
+      border: 1px solid rgba(27, 173, 166, 0.18);
+      color: var(--teal-dark);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 0.3rem 0.65rem;
+      margin: 0.2rem 0.25rem 0.2rem 0;
+    }
+
+    /* ─── CREDENTIALS STRIP ─── */
+    .credentials-section {
+      background: #EFECEA;
+      padding: 4.5rem 8vw;
+    }
+    .credentials-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.5rem;
+    }
+    @media (max-width: 900px) {
+      .credentials-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .credentials-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .cred-card {
+      text-align: center;
+      padding: 1.75rem 1rem;
+      background: white;
+      border: 1px solid rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .cred-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.03);
+    }
+    .cred-icon {
+      width: 36px; height: 36px;
+      margin: 0 auto 0.875rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(27, 173, 166, 0.08);
+      border-radius: 50%;
+      color: var(--teal);
+    }
+    .cred-icon svg { width: 18px; height: 18px; }
+    .cred-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 0.35rem;
+      letter-spacing: 0.01em;
+    }
+    .cred-desc {
+      font-size: 0.72rem;
+      color: var(--mid);
+      line-height: 1.55;
+    }
+
+    /* ─── CLOSING CTA ─── */
+    .closing-section {
+      position: relative;
+      height: 640px;
+      overflow: hidden;
+    }
+    .closing-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .closing-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(0,0,0,0.82) 0%,
+        rgba(0,0,0,0.48) 50%,
+        rgba(0,0,0,0.2) 100%
+      );
+    }
+    .closing-content {
+      position: absolute; inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 8vw;
+      max-width: 800px;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark);
+      padding: 5rem 8vw 3rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 2fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+    }
+    @media (max-width: 900px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+    .footer-link {
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+    .footer-link:hover { color: var(--teal); }
+    .footer-nav-link {
+      display: block;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 0.875rem;
+      margin-bottom: 0.625rem;
+      transition: color 0.2s;
+    }
+    .footer-nav-link:hover { color: white; }
+    .footer-input {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: white;
+      font-size: 0.875rem;
+      padding: 0.7rem 1rem;
+      width: 100%;
+      margin-bottom: 0.5rem;
+      outline: none;
+      font-family: 'DM Sans', sans-serif;
+      transition: border-color 0.2s;
+    }
+    .footer-input::placeholder { color: rgba(255,255,255,0.25); }
+    .footer-input:focus { border-color: var(--teal); }
+
+    /* ─── MOBILE MENU ─── */
+    .mobile-menu {
+      position: fixed; inset: 0;
+      background: white;
+      z-index: 500;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem 2rem 2.5rem;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.77,0,0.175,1);
+    }
+    .mobile-menu.open { transform: translateX(0); }
+    .mob-nav-link {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 2.75rem;
+      font-weight: 400;
+      letter-spacing: -0.025em;
+      color: var(--dark);
+      text-decoration: none;
+      display: block;
+      padding: 0.625rem 0;
+      border-bottom: 1px solid var(--light);
+      transition: color 0.2s;
+    }
+    .mob-nav-link:hover { color: var(--teal); }
+
+    /* ─── REVEAL ANIMATIONS ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.18s; }
+    .d3 { transition-delay: 0.28s; }
+    .d4 { transition-delay: 0.38s; }
+    .d5 { transition-delay: 0.48s; }
+
+    /* ─── KEYFRAMES ─── */
+    @keyframes fadeUpIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scrollPulse {
+      0%   { left: -100%; }
+      50%  { left: 0%; }
+      100% { left: 100%; }
+    }
+
+    /* ─── MOBILE OVERRIDES ─── */
+    @media (max-width: 600px) {
+      #site-header { padding: 1rem 1.5rem; }
+      .hero-about-content { padding: 0 6vw; }
+      .story-section, .philosophy-section, .elliot-section, .credentials-section { padding-left: 6vw; padding-right: 6vw; }
+      .studio-card { padding: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════════ -->
+  <header id="site-header">
+    <a href="/" style="display:flex;align-items:center;flex-shrink:0;">
+      <img src="/logo-black.png" alt="East Spruce Design Build" id="nav-logo"
+           style="height:2rem;width:auto;display:block;" />
+    </a>
+    <nav style="display:flex;align-items:center;gap:2rem;" class="hidden md:flex">
+      <a href="/portfolio" class="nav-link">Portfolio</a>
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/about" class="nav-link active">About</a>
+      <a href="/contact" class="btn-primary" style="margin-left:0.5rem;">Start a Project &rarr;</a>
+    </nav>
+    <button id="menu-btn" class="flex flex-col md:hidden"
+            style="background:none;border:none;cursor:pointer;padding:0.5rem;gap:5px;align-items:flex-end;"
+            aria-label="Menu">
+      <span style="display:block;width:24px;height:1.5px;background:var(--dark);transition:width 0.3s,transform 0.3s;" id="mb1"></span>
+      <span style="display:block;width:16px;height:1.5px;background:var(--dark);transition:width 0.3s,opacity 0.3s;" id="mb2"></span>
+      <span style="display:block;width:24px;height:1.5px;background:var(--dark);transition:width 0.3s,transform 0.3s;" id="mb3"></span>
+    </button>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3rem;">
+      <img src="/logo-black.png" alt="East Spruce Design Build" style="height:1.75rem;" />
+      <button onclick="closeMobileMenu()"
+              style="background:none;border:none;cursor:pointer;font-size:1.5rem;color:var(--dark);line-height:1;">&#215;</button>
+    </div>
+    <nav style="flex:1;">
+      <a href="/portfolio" class="mob-nav-link" onclick="closeMobileMenu()">Portfolio</a>
+      <a href="/services" class="mob-nav-link" onclick="closeMobileMenu()">Services</a>
+      <a href="/about" class="mob-nav-link" onclick="closeMobileMenu()">About</a>
+      <a href="/contact" class="mob-nav-link" onclick="closeMobileMenu()">Contact</a>
+    </nav>
+    <a href="/contact" class="btn-primary"
+       style="justify-content:center;padding:1rem;font-size:0.875rem;margin-top:2rem;">
+      Start a Project &rarr;
+    </a>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       1. HERO — VIDEO BACKGROUND
+  ═══════════════════════════════════════════════ -->
+  <section class="hero-about">
+    <video class="hero-video" autoplay muted loop playsinline
+           poster="https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1920&h=1080&q=85">
+      <source src="/cabin_in_woods_web.mp4" type="video/mp4" />
+      <source src="/cabin_in_woods_web.mov" type="video/quicktime" />
+    </video>
+    <div class="hero-gradient"></div>
+    <div class="hero-about-content">
+      <p class="hero-about-eyebrow">About East Spruce</p>
+      <h1 class="hero-about-headline">
+        <span class="hero-about-line1">Built from Passion.</span>
+        <span class="hero-about-line2">Guided by Principle.</span>
+      </h1>
+      <p class="hero-about-sub">
+        A licensed architecture and design/build studio founded on the belief that great homes start with great values &mdash; sustainability, craft, and care for how people actually live.
+      </p>
+    </div>
+    <div class="scroll-hint">
+      <div class="scroll-track"><div class="scroll-fill"></div></div>
+      Scroll
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       2. OUR STORY — SPLIT WITH STACKED PHOTOS
+  ═══════════════════════════════════════════════ -->
+  <section class="story-section">
+    <div class="story-grid">
+      <div class="reveal">
+        <p class="section-label">Our Story</p>
+        <h2 class="font-display"
+            style="font-size:clamp(2rem,4vw,3.25rem);font-weight:400;letter-spacing:-0.02em;line-height:1.08;margin-bottom:1.75rem;">
+          It Started With a Drawing<br />
+          <em style="font-weight:300;color:var(--mid);">and a Shovel.</em>
+        </h2>
+        <p style="font-size:0.9375rem;color:var(--mid);line-height:1.85;margin-bottom:1.25rem;">
+          Long before Elliot Nolter was a licensed architect, he was a kid drawing buildings and digging foundations by hand. That instinct &mdash; to both imagine and build &mdash; never went away. It just got sharper.
+        </p>
+        <p style="font-size:0.9375rem;color:var(--mid);line-height:1.85;margin-bottom:1.25rem;">
+          After studying classical architecture at Barnstone Studios and competing in the U.S. Department of Energy Solar Decathlon at Penn State, Elliot spent nine years at a traditional architecture firm learning the discipline of the craft. But something was missing: the direct connection between design intent and built reality.
+        </p>
+        <p style="font-size:0.9375rem;color:var(--mid);line-height:1.85;">
+          In 2018, he founded East Spruce Design Build to close that gap &mdash; one studio that designs and builds, where sustainability isn't an upgrade and every decision answers to the people who'll live in the space.
+        </p>
+      </div>
+      <div class="story-photos reveal d2">
+        <div class="story-photo story-photo-1">
+          <img src="https://placehold.co/520x400/1A2520/F5F3EF?text=Barnstone+Studios" alt="Elliot studying at Barnstone Studios" />
+        </div>
+        <div class="story-photo story-photo-2">
+          <img src="https://placehold.co/440x320/344030/F5F3EF?text=Solar+Decathlon" alt="Solar Decathlon build at Penn State" />
+        </div>
+        <div class="story-photo story-photo-3">
+          <img src="https://placehold.co/320x240/141414/1BADA6?text=Early+Work" alt="Early project work" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       3. THE STUDIO — FULL-BLEED WITH FLOATING CARD
+  ═══════════════════════════════════════════════ -->
+  <section class="studio-section" style="min-height:600px;">
+    <img class="studio-bg" src="https://placehold.co/1920x800/344030/F5F3EF?text=Carriage+House+Studio" alt="East Spruce studio — renovated 19th-century carriage house" />
+    <div class="studio-overlay"></div>
+    <div class="studio-card reveal">
+      <p class="section-label" style="color:rgba(27,173,166,0.85);">Where We Work</p>
+      <h2 class="font-display"
+          style="font-size:clamp(1.75rem,3vw,2.5rem);font-weight:400;color:white;line-height:1.12;letter-spacing:-0.02em;margin-bottom:1.25rem;">
+        A Studio That Practices<br />What It Preaches.
+      </h2>
+      <p style="font-size:0.9375rem;color:rgba(255,255,255,0.6);line-height:1.85;margin-bottom:1rem;">
+        East Spruce is housed in a renovated 19th-century carriage house in Bethlehem, PA. The building itself is fossil-fuel free, with EV charging, indoor bike storage, smart daylighting, and rooftop solar pushing it toward net-zero.
+      </p>
+      <p style="font-size:0.9375rem;color:rgba(255,255,255,0.6);line-height:1.85;margin-bottom:1.5rem;">
+        It's not a showroom &mdash; it's proof. Every decision we advocate for our clients, we've already tested on ourselves.
+      </p>
+      <a href="/portfolio" class="btn-outline-ghost">See Our Work &rarr;</a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       4. THE PHILOSOPHY — DARK SECTION
+  ═══════════════════════════════════════════════ -->
+  <section class="philosophy-section">
+    <div class="philosophy-grid">
+      <div class="reveal">
+        <p class="section-label" style="color:rgba(27,173,166,0.75);">Our Approach</p>
+        <h2 class="font-display"
+            style="font-size:clamp(2rem,4vw,3.25rem);font-weight:400;letter-spacing:-0.02em;color:white;line-height:1.08;margin-bottom:1.75rem;">
+          Sustainability Isn't<br />a Feature.
+          <em style="font-weight:300;color:rgba(255,255,255,0.6);display:block;margin-top:0.15em;">It's How We Think.</em>
+        </h2>
+        <p style="font-size:0.9375rem;color:rgba(255,255,255,0.5);line-height:1.85;margin-bottom:1.25rem;">
+          We use the SAVE framework &mdash; <strong style="color:rgba(255,255,255,0.72);">S</strong>aving time, money, resources, and energy at every stage. Not as a premium add-on, but as the baseline for every project we take on.
+        </p>
+        <p style="font-size:0.9375rem;color:rgba(255,255,255,0.5);line-height:1.85;margin-bottom:1.25rem;">
+          Our design horizon is 100 years. We think about how a building performs across generations, not just the day it's finished. The most sustainable building is the one that's already standing &mdash; so we preserve, adapt, and build to last.
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:2rem;">
+          <a href="/services" class="btn-outline-ghost">Learn About Our Approach &rarr;</a>
+        </div>
+      </div>
+      <div class="philosophy-img-wrap reveal d2">
+        <img src="https://placehold.co/640x540/1A2520/1BADA6?text=Building+Science+Detail" alt="High-performance building detail" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       5. MEET ELLIOT — PORTRAIT-DOMINANT
+  ═══════════════════════════════════════════════ -->
+  <section class="elliot-section">
+    <div class="elliot-grid">
+      <div class="elliot-portrait reveal">
+        <img src="https://placehold.co/720x680/344030/F5F3EF?text=Elliot+Nolter" alt="Elliot Nolter, founder of East Spruce Design Build" />
+      </div>
+      <div class="reveal d2">
+        <p class="section-label">The Founder</p>
+        <h2 class="font-display"
+            style="font-size:clamp(2rem,4vw,3.25rem);font-weight:400;letter-spacing:-0.02em;line-height:1.08;margin-bottom:1.25rem;">
+          Meet Elliot Nolter.
+        </h2>
+        <div style="display:flex;flex-wrap:wrap;gap:0.35rem;margin-bottom:1.5rem;">
+          <span class="credential-inline">RA &mdash; PA &amp; NJ</span>
+          <span class="credential-inline">CPHC</span>
+          <span class="credential-inline">SHP</span>
+        </div>
+        <p style="font-size:0.9375rem;color:var(--mid);line-height:1.85;margin-bottom:1.25rem;">
+          Elliot is a licensed architect in Pennsylvania and New Jersey, a Certified Passive House Consultant, and a Sustainable Homes Professional. He studied classical architecture at Barnstone Studios and spent nearly a decade in a traditional firm before founding East Spruce.
+        </p>
+        <p style="font-size:0.9375rem;color:var(--mid);line-height:1.85;margin-bottom:1.25rem;">
+          He's involved in every project from the first phone call to the final walkthrough &mdash; not as a manager reviewing plans, but as the designer and builder making the decisions. That's deliberate. It's the only way to ensure the design intent survives construction.
+        </p>
+        <p style="font-size:0.9375rem;color:var(--mid);line-height:1.85;margin-bottom:2rem;">
+          Outside the studio, Elliot is an outdoor enthusiast and a steward of the land &mdash; values that show up in every structure he designs.
+        </p>
+        <a href="/contact" class="btn-primary" style="padding:0.875rem 1.875rem;font-size:0.875rem;">Start a Conversation &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       6. CREDENTIALS — TEXT-BASED BADGE STRIP
+  ═══════════════════════════════════════════════ -->
+  <section class="credentials-section">
+    <div style="text-align:center;margin-bottom:2.5rem;" class="reveal">
+      <p class="section-label" style="justify-content:center;">Credentials &amp; Certifications</p>
+    </div>
+    <div class="credentials-grid">
+      <div class="cred-card reveal d1">
+        <div class="cred-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21h18M3 7v1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7H3l2-4h14l2 4M6 21V10.5M18 21V10.5"/>
+          </svg>
+        </div>
+        <p class="cred-title">Licensed Architect</p>
+        <p class="cred-desc">PA &amp; NJ</p>
+      </div>
+      <div class="cred-card reveal d2">
+        <div class="cred-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/>
+          </svg>
+        </div>
+        <p class="cred-title">CPHC</p>
+        <p class="cred-desc">Certified Passive House Consultant</p>
+      </div>
+      <div class="cred-card reveal d3">
+        <div class="cred-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <p class="cred-title">SHP</p>
+        <p class="cred-desc">Sustainable Homes Professional</p>
+      </div>
+      <div class="cred-card reveal d4">
+        <div class="cred-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+        </div>
+        <p class="cred-title">Solar Decathlon</p>
+        <p class="cred-desc">Penn State Alumni</p>
+      </div>
+      <div class="cred-card reveal d5">
+        <div class="cred-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+        </div>
+        <p class="cred-title">AIA Member</p>
+        <p class="cred-desc">American Institute of Architects</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       7. CLOSING CTA — FULL-BLEED
+  ═══════════════════════════════════════════════ -->
+  <section class="closing-section">
+    <img class="closing-img" src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&w=1920&h=700&q=85"
+         alt="Completed East Spruce project" />
+    <div class="closing-overlay"></div>
+    <div class="closing-content">
+      <div class="reveal">
+        <p class="section-label" style="color:rgba(27,173,166,0.75);">Ready to Begin</p>
+        <h2 class="font-display"
+            style="font-size:clamp(2.25rem,5vw,4.5rem);font-weight:400;line-height:1.03;letter-spacing:-0.025em;color:white;margin-bottom:1.125rem;">
+          Great design doesn't<br />just look right.<br />
+          <em style="color:var(--teal);font-weight:300;">It feels right.</em>
+        </h2>
+        <p style="font-size:1rem;color:rgba(255,255,255,0.6);line-height:1.8;max-width:460px;margin-bottom:2.25rem;">
+          Apply for a free feasibility call and find out how to bring high-performance, sustainable design to your next project.
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;">
+          <a href="/contact" class="btn-primary"
+             style="padding:0.875rem 2rem;font-size:0.875rem;">Get In Touch &rarr;</a>
+          <a href="/ask-the-expert" class="btn-outline-ghost"
+             style="padding:0.875rem 2rem;font-size:0.875rem;">Ask the Expert</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       8. FOOTER
+  ═══════════════════════════════════════════════ -->
+  <footer>
+    <div style="max-width:1200px;margin:0 auto;">
+      <div class="footer-grid">
+        <!-- Brand -->
+        <div>
+          <img src="/logo-black.png" alt="East Spruce Design Build"
+               style="height:1.875rem;width:auto;margin-bottom:1.125rem;filter:invert(1) brightness(2);mix-blend-mode:screen;" />
+          <p class="font-display"
+             style="font-size:1rem;font-style:italic;font-weight:400;color:rgba(255,255,255,0.5);margin-bottom:0.875rem;line-height:1.5;">
+            Resourceful. Responsible. Design.
+          </p>
+          <p style="font-size:0.8125rem;color:rgba(255,255,255,0.3);line-height:1.75;margin-bottom:1.375rem;">
+            Bethlehem, PA 18018<br />
+            Architecture &amp; Design/Build Studio<br />
+            Licensed in PA &amp; NJ
+          </p>
+          <div style="display:flex;gap:1.25rem;">
+            <a href="#" class="footer-link">Instagram</a>
+            <a href="#" class="footer-link">Houzz</a>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div>
+          <p style="font-size:0.65rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:1.125rem;">
+            Navigation
+          </p>
+          <a href="/portfolio" class="footer-nav-link">Portfolio</a>
+          <a href="/services" class="footer-nav-link">Services</a>
+          <a href="/about" class="footer-nav-link">About</a>
+          <a href="/blog" class="footer-nav-link">Blog</a>
+          <a href="/contact" class="footer-nav-link">Contact</a>
+          <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.06);">
+            <a href="#" class="footer-nav-link" style="color:rgba(255,255,255,0.25);font-size:0.8125rem;">Privacy Policy</a>
+          </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div>
+          <p style="font-size:0.65rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:1.125rem;">
+            Stay in the Loop
+          </p>
+          <p class="font-display"
+             style="font-size:1.375rem;font-weight:400;color:white;margin-bottom:0.625rem;line-height:1.2;">
+            Get Project Inspiration + Updates
+          </p>
+          <p style="font-size:0.8125rem;color:rgba(255,255,255,0.38);line-height:1.75;margin-bottom:1.25rem;">
+            Design ideas, sustainable building tips, and occasional project stories from our studio.
+          </p>
+          <form onsubmit="return false;" style="display:flex;flex-direction:column;gap:0.5rem;">
+            <input type="text" placeholder="First Name" class="footer-input" />
+            <input type="email" placeholder="Email Address" class="footer-input" />
+            <button type="submit" class="btn-primary" style="justify-content:center;font-size:0.8125rem;">
+              Subscribe &rarr;
+            </button>
+          </form>
+          <p style="font-size:0.75rem;color:rgba(255,255,255,0.2);margin-top:0.625rem;">No spam. Unsubscribe anytime.</p>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.06);">
+        <p style="font-size:0.75rem;color:rgba(255,255,255,0.2);">
+          &copy; 2026 East Spruce Design Build. All rights reserved.
+        </p>
+        <p style="font-size:0.75rem;color:rgba(255,255,255,0.2);">
+          Licensed in PA &amp; NJ &nbsp;&middot;&nbsp; CPHC Certified
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Sticky header ──
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('compact', window.scrollY > 40);
+    }, { passive: true });
+
+    // ── Mobile menu ──
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+    function closeMobileMenu() {
+      document.getElementById('mobile-menu').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // ── Scroll reveal ──
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.07, rootMargin: '0px 0px -32px 0px' });
+    revealEls.forEach(el => revealObs.observe(el));
+  </script>
+
+</body>
+</html>
